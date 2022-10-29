@@ -1,0 +1,155 @@
+.home {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 36px;
+  background: #FCFCFC;
+
+  &-listGroup {
+    width: 502px;
+  }
+
+  &-list {
+    width: 470px;
+  }
+
+  &-list-reality {
+    padding: 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow-x: scroll;
+    display: flex;
+    background: #fff;
+  }
+
+  .reality {
+    width: 76px;
+    margin: 0 7px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    &:first-child {
+      margin-left: 14px;
+    }
+
+    &-pic-outside {
+      @include circle(65px);
+      background-image: linear-gradient(to bottom left, #e14fad 0%, #f9d423 100%);
+      position: relative;
+
+      &:after {
+        content: '';
+        @include ab-center;
+        @include circle(60px);
+        background: #fff;
+      }
+    }
+
+    &-pic {
+      @include userPic(56px);
+      @include ab-center;
+      z-index: 2;
+
+    }
+
+    &-title {
+      h5 {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 6px;
+        width: 56px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+  }
+
+  .post {
+    height: 755.5px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 12px;
+    overflow: hidden;
+
+    h2 {
+      font-weight: bold;
+    }
+
+    &-header {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+    }
+
+    &-user {
+      display: flex;
+      align-items: center;
+
+      &-pic {
+        @include userPic(36px);
+        margin-right: 12px;
+      }
+    }
+
+
+    &-pic {
+      height: 537.26px;
+      width: 470px;
+
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-main {
+      min-height: 162.24px;
+      padding: 12px;
+    }
+
+    &-icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+
+      button {
+        padding: 0;
+      }
+
+      &-left {
+        button {
+          margin-right: 20px;
+        }
+      }
+    }
+
+    &-likeCount {
+      font-weight: bold;
+      padding-bottom: 12px;
+    }
+
+    &-text {
+      line-height: 1.3;
+
+      .tag {
+        color: #00376b;
+        margin-right: 6px;
+        font-size: 16px;
+        padding: 0;
+      }
+    }
+  }
+
+  &-side {
+    width: 319px;
+    border: 1px solid #ccc;
+  }
+}
