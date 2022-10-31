@@ -1,12 +1,13 @@
 import { allUser } from "../../utils/API";
+import { user } from "../../utils/userData";
 import { useState, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 let allUserList = [];
 allUser().then((res) => {
   allUserList = res.data;
-  console.log(res);
 });
 function LayoutSide() {
+  const navigate = useNavigate();
   const [moreToggle, setMoreToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
   const [searchInput, setSearchInput] = useState("");
@@ -20,12 +21,13 @@ function LayoutSide() {
     const searchListID = currentSearchList.map((item) => item.id);
     allUserList.forEach((item) => {
       if (item.id === e.target.id && !searchListID.includes(e.target.id)) {
-        searchList.push(item);
-        searchListID.push(item.id);
+        searchList.unshift(item);
+        searchListID.unshift(item.id);
         setCurrentSearchList(searchList);
         setIsSearch(false);
         setSearchInput("");
         setSearchToggle(false);
+        navigate(`/${item.id}`);
       }
     });
   };
@@ -70,10 +72,11 @@ function LayoutSide() {
             <div className="side-logo">
               <div
                 className={searchToggle ? "side-logo-sm" : "side-logo-big"}
+                onClick={() => navigate("/")}
               ></div>
             </div>
             <ul className="side-list">
-              <li>
+              <li onClick={() => navigate("/")}>
                 <span className="icon material-symbols-outlined">home</span>
                 <span style={searchToggle ? { display: "none" } : {}}>
                   首頁
@@ -124,8 +127,10 @@ function LayoutSide() {
                   建立
                 </span>
               </li>
-              <li>
-                <span className="icon material-symbols-outlined">menu</span>
+              <li onClick={() => navigate("/mypage")}>
+                <div className="user-pic">
+                  <img src={user.pic} alt={user.name} />
+                </div>
                 <span style={searchToggle ? { display: "none" } : {}}>
                   個人檔案
                 </span>
@@ -204,7 +209,8 @@ function LayoutSide() {
                           </div>
                           <div className="search-card-title" id={item.id}>
                             <h4 id={item.id}>
-                              {item.firstName.toLowerCase()}_{item.lastName.toLowerCase()}
+                              {item.firstName.toLowerCase()}_
+                              {item.lastName.toLowerCase()}
                             </h4>
                             <h5 id={item.id}>{item.firstName.toLowerCase()}</h5>
                           </div>
@@ -227,6 +233,7 @@ function LayoutSide() {
                             className="search-card"
                             key={item.id}
                             id={item.id}
+                            onClick={() => navigate(`/${item.id}`)}
                           >
                             <div className="search-card-main" id={item.id}>
                               <div className="search-card-pic" id={item.id}>
@@ -238,9 +245,12 @@ function LayoutSide() {
                               </div>
                               <div className="search-card-title" id={item.id}>
                                 <h4 id={item.id}>
-                                  {item.firstName.toLowerCase()}_{item.lastName.toLowerCase()}
+                                  {item.firstName.toLowerCase()}_
+                                  {item.lastName.toLowerCase()}
                                 </h4>
-                                <h5 id={item.id}>{item.firstName.toLowerCase()}</h5>
+                                <h5 id={item.id}>
+                                  {item.firstName.toLowerCase()}
+                                </h5>
                               </div>
                             </div>
                             <div className="search-card-footer">

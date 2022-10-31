@@ -1,0 +1,162 @@
+.userPage {
+  width: 953px;
+  margin: 0 auto;
+  padding: 30px 0;
+
+  &-header {
+    display: flex;
+    margin-bottom: 44px;
+
+    .userPicGroup {
+      width: 40%;
+      @include flex-center;
+      margin-right: 30px;
+    }
+
+    .userPic {
+      @include userPic(150px);
+    }
+
+    .userDetail {
+      width: 60%;
+
+      .userAccount {
+        @include flex-align-items-center;
+        margin-bottom: 20px;
+
+        .account {
+          font-size: 30px;
+        }
+
+        .edit,.sendMsg {
+          border: 1px solid $third-gray;
+          border-radius: 5px;
+          padding: 2.5px 5px;
+          margin-left: 12px;
+          margin-right: 6px;
+
+          button {
+            font-weight: bold;
+          }
+        }
+      }
+
+      .userPostFollow {
+        @include flex-align-items-center;
+        margin-bottom: 20px;
+
+        li {
+          font-size: 18px;
+          margin-right: 36px;
+
+          span {
+            font-weight: bold;
+          }
+        }
+      }
+
+      .userContent {
+        li {
+          font-size: 18px;
+          line-height: 1.3;
+        }
+
+        .name {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &-main {
+    .select-show-postList {
+      @include flex-justify-content-center;
+      border-top: 1px solid $third-gray;
+
+      li {
+        @include flex-align-items-center;
+        padding: 20px 0;
+        margin-right: 60px;
+        color: $primary-gray;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .selected {
+        border-top: 1px solid $primary-black;
+        color: $primary-black;
+      }
+
+      span {
+        font-size: 14px;
+        display: inline-block;
+
+        &:first-child {
+          margin-right: 6px;
+        }
+      }
+    }
+
+    .user-postList {
+      display: flex;
+      flex-wrap: wrap;
+
+      &-item {
+        width: 293px;
+        height: 293px;
+        margin-right: 28px;
+        margin-bottom: 28px;
+        position: relative;
+        cursor: pointer;
+
+        &:nth-child(3n+3) {
+          margin-right: 0;
+        }
+
+        &:hover {
+          .post-hover {
+            opacity: 1;
+          }
+        }
+      }
+
+      .post-hover {
+        @include position-t-r-b-l-0(absolute);
+        background: rgba(0, 0, 0, .4);
+        opacity: 0;
+
+        ul {
+          display: flex;
+          @include ab-center;
+        }
+
+        li {
+          @include flex-align-items-center;
+          padding: 0 8px;
+
+          span {
+            color: #fff;
+            display: inline-block;
+            font-weight: bold;
+
+            &:first-child {
+              margin-right: 4px;
+            }
+          }
+        }
+      }
+
+      .post-pic {
+        width: 293px;
+        height: 293px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+      }
+    }
+  }
+}

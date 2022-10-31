@@ -74,6 +74,7 @@ button {
   cursor: pointer;
   border: none;
   background: transparent;
+  font-size: 16px;
 }
 
 .container {
@@ -83,6 +84,7 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  position: relative;
 }
 
 .d-none {
@@ -102,11 +104,12 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  z-index: 1;
 }
 
 .side-all {
   position: fixed;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #C7C7C7;
   padding: 12px;
   height: 100%;
 }
@@ -153,6 +156,20 @@ button {
           align-items: center;
   margin: 12px 0;
   cursor: pointer;
+}
+
+.side-list .user-pic {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.side-list .user-pic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .side .icon {
@@ -266,7 +283,7 @@ button {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   font-size: 16px;
-  color: #999;
+  color: #8e8e8e;
 }
 
 .side-search-list {
@@ -372,13 +389,13 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: start;
@@ -410,7 +427,7 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
   padding-top: 36px;
-  background: #FCFCFC;
+  background: #FAFAFA;
 }
 
 .home-listGroup {
@@ -423,7 +440,7 @@ button {
 
 .home-list-reality {
   padding: 16px 0;
-  border: 1px solid #ccc;
+  border: 1px solid #C7C7C7;
   border-radius: 10px;
   overflow-x: scroll;
   display: -webkit-box;
@@ -438,14 +455,14 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .home .reality:first-child {
@@ -461,7 +478,7 @@ button {
   position: relative;
 }
 
-.home .reality-pic-outside:after {
+.home .reality-pic-outside::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -484,7 +501,6 @@ button {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  z-index: 2;
 }
 
 .home .reality-pic img {
@@ -505,15 +521,16 @@ button {
 }
 
 .home .post {
-  height: 755.5px;
-  border: 1px solid #ccc;
+  min-height: 755.5px;
+  border: 1px solid #C7C7C7;
   border-radius: 10px;
   margin-top: 12px;
   overflow: hidden;
 }
 
-.home .post h2 {
+.home .post .account {
   font-weight: bold;
+  cursor: pointer;
 }
 
 .home .post-header {
@@ -599,6 +616,44 @@ button {
 
 .home .post-text {
   line-height: 1.3;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home .post-text span {
+  display: inline-block;
+}
+
+.home .post-text .account {
+  margin-right: 6px;
+}
+
+.home .post-text .hide-text-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.home .post-text .hide-text {
+  max-width: 270px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.home .post-text .more-text {
+  width: 32px;
+  color: #8e8e8e;
+  margin-left: 6px;
+  cursor: pointer;
 }
 
 .home .post-text .tag {
@@ -608,8 +663,405 @@ button {
   padding: 0;
 }
 
+.home .post-date {
+  color: #8e8e8e;
+  font-size: 12px;
+}
+
 .home-side {
   width: 319px;
-  border: 1px solid #ccc;
+  margin-top: 24px;
+}
+
+.home .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.home .user-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.home .user-pic {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+.home .user-pic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.home .user-account {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.home .user-name {
+  color: #8e8e8e;
+}
+
+.home .user-switch-account-btn button {
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.home .suggestUser-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.home .suggestUser-title span {
+  color: #8e8e8e;
+  font-weight: bold;
+}
+
+.home .suggestUser-title button {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.home .suggestUser-list {
+  padding: 8px 0;
+}
+
+.home .suggestUser-list-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 8px 0;
+}
+
+.home .suggestUser-list-item-detail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.home .suggestUser-list-item-pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+.home .suggestUser-list-item-pic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.home .suggestUser-list-item-account {
+  font-weight: bold;
+}
+
+.home .suggestUser-list-item-follow-btn {
+  color: #0095f6;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.modal-body {
+  width: 400px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #C7C7C7;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.modal-body li {
+  height: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-bottom: 1px solid #C7C7C7;
+}
+
+.modal-body li:first-child button, .modal-body li:nth-child(2) button {
+  color: #ed4956;
+  font-weight: bold;
+}
+
+.modal-body li:last-child {
+  border-bottom: none;
+}
+
+.modal-body li button {
+  width: 100%;
+  height: 100%;
+}
+
+.userPage {
+  width: 953px;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+
+.userPage-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 44px;
+}
+
+.userPage-header .userPicGroup {
+  width: 40%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-right: 30px;
+}
+
+.userPage-header .userPic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userPage-header .userPic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.userPage-header .userDetail {
+  width: 60%;
+}
+
+.userPage-header .userDetail .userAccount {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+.userPage-header .userDetail .userAccount .account {
+  font-size: 30px;
+}
+
+.userPage-header .userDetail .userAccount .edit, .userPage-header .userDetail .userAccount .sendMsg {
+  border: 1px solid #C7C7C7;
+  border-radius: 5px;
+  padding: 2.5px 5px;
+  margin-left: 12px;
+  margin-right: 6px;
+}
+
+.userPage-header .userDetail .userAccount .edit button, .userPage-header .userDetail .userAccount .sendMsg button {
+  font-weight: bold;
+}
+
+.userPage-header .userDetail .userPostFollow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 20px;
+}
+
+.userPage-header .userDetail .userPostFollow li {
+  font-size: 18px;
+  margin-right: 36px;
+}
+
+.userPage-header .userDetail .userPostFollow li span {
+  font-weight: bold;
+}
+
+.userPage-header .userDetail .userContent li {
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.userPage-header .userDetail .userContent .name {
+  font-weight: bold;
+}
+
+.userPage-main .select-show-postList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-top: 1px solid #C7C7C7;
+}
+
+.userPage-main .select-show-postList li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px 0;
+  margin-right: 60px;
+  color: #8e8e8e;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.userPage-main .select-show-postList .selected {
+  border-top: 1px solid #262626;
+  color: #262626;
+}
+
+.userPage-main .select-show-postList span {
+  font-size: 14px;
+  display: inline-block;
+}
+
+.userPage-main .select-show-postList span:first-child {
+  margin-right: 6px;
+}
+
+.userPage-main .user-postList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.userPage-main .user-postList-item {
+  width: 293px;
+  height: 293px;
+  margin-right: 28px;
+  margin-bottom: 28px;
+  position: relative;
+  cursor: pointer;
+}
+
+.userPage-main .user-postList-item:nth-child(3n+3) {
+  margin-right: 0;
+}
+
+.userPage-main .user-postList-item:hover .post-hover {
+  opacity: 1;
+}
+
+.userPage-main .user-postList .post-hover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+
+.userPage-main .user-postList .post-hover ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.userPage-main .user-postList .post-hover li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 8px;
+}
+
+.userPage-main .user-postList .post-hover li span {
+  color: #fff;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.userPage-main .user-postList .post-hover li span:first-child {
+  margin-right: 4px;
+}
+
+.userPage-main .user-postList .post-pic {
+  width: 293px;
+  height: 293px;
+}
+
+.userPage-main .user-postList .post-pic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 /*# sourceMappingURL=all.css.map */

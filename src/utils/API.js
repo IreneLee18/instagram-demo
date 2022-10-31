@@ -11,13 +11,13 @@ export const allPost = (limit) => {
     headers,
   }).then((res) => res.json());
 };
-export const user = (id) => {
+export const userID = (id) => {
   return fetch(`https://dummyapi.io/data/v1/user/${id}`, {
     headers,
   }).then((res) => res.json());
 };
 export const userPost = (id) => {
-  return fetch(`https://dummyapi.io/data/v1/user/${id}/post?page=0&limit=5`, {
+  return fetch(`https://dummyapi.io/data/v1/user/${id}/post?page=0`, {
     headers,
   }).then((res) => res.json());
 };

@@ -1,3 +1,12 @@
+$primary-black: #262626;
+$primary-gray: #8e8e8e;
+$secondary-gray: #E0E0E0;
+$third-gray: #C7C7C7;
+$light-gray: #F0F0F0;
+$blue: #0095f6;
+$dark-blue: #00376b;
+$red: #ed4956;
+
 @mixin ab-center {
   position: absolute;
   top: 50%;
@@ -20,4 +29,34 @@
     height: 100%;
     object-fit: cover;
   }
+}
+
+@mixin flex-align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-align-items-center-justify-content-sb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin position-t-r-b-l-0($position) {
+  position: $position;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
