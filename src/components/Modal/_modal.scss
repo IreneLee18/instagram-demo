@@ -1,0 +1,15 @@
+.modal {
+  @include position-t-r-b-l-0(fixed);
+  background: rgba(0, 0, 0, .3);
+  z-index: 100;
+
+  &-body {
+    border-radius: 10px;
+    border: 1px solid $third-gray;
+    @include ab-center;
+  }
+  &-close{
+    @include position-t-r-b-l-0(absolute);
+    background: rgba(0, 0, 0, .3);
+  }
+}

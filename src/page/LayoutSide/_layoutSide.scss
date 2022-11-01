@@ -34,10 +34,12 @@
 
     &-big {
       @include side-logo(110px, 40px, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1600px-Instagram_logo.svg.png', false);
+      cursor: pointer;
     }
 
     &-sm {
       @include side-logo(24px, 24px, 'https://cdn-icons-png.flaticon.com/512/87/87390.png', true);
+      cursor: pointer;
     }
   }
 
@@ -49,7 +51,8 @@
       margin: 12px 0;
       cursor: pointer;
     }
-    .user-pic{
+
+    .user-pic {
       @include userPic(24px);
     }
   }

@@ -16,17 +16,15 @@ function PostMore(pops, ref) {
 
   return (
     <>
-      <div
-        className="modal"
-        onClick={() => setModalState(false)}
-      >
+      <div className="modal postMore">
+        <div className="modal-close" onClick={() => setModalState(false)}></div>
         <div className="modal-content">
-          <ul className="modal-body">
+          <ul className="modal-body postMore-body">
             <li>
-              <button>檢舉</button>
+              <button className="red-color fwb">檢舉</button>
             </li>
             <li>
-              <button>取消追蹤</button>
+              <button className="red-color fwb">取消追蹤</button>
             </li>
             <li>
               <button>加到「最愛」</button>

@@ -1,27 +1,14 @@
-.modal {
-  @include position-t-r-b-l-0(fixed);
-  background: rgba(0, 0, 0, .3);
-  z-index: 100;
+.postMore {
+  z-index: 110;
 
   &-body {
     width: 400px;
     background: #fff;
-    border-radius: 10px;
-    border: 1px solid $third-gray;
-    @include ab-center;
 
     li {
       height: 48px;
       @include flex-center;
       border-bottom: 1px solid $third-gray;
-
-      &:first-child,
-      &:nth-child(2) {
-        button {
-          color: $red;
-          font-weight: bold;
-        }
-      }
 
       &:last-child {
         border-bottom: none;

@@ -1,12 +1,20 @@
 import { userID, userPost } from "../../../utils/API";
 import { useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
+import Post from "../../../components/Modal/Post/Post";
 
 function OtherPage() {
   const { ID } = useParams();
   const [user, setUser] = useState(null);
   const [userPostList, setUserPostList] = useState([]);
   const userPostListLength = useRef(0);
+  const postModalRef = useRef();
+  const [currentPostID, setCurrentPostID] = useState("");
+  const handleOpenPostModal = (e) => {
+    postModalRef.current.openPostModal();
+    console.log(e.target.id);
+    setCurrentPostID(e.target.id);
+  };
   useEffect(() => {
     userID(ID).then((res) => setUser(res));
     userPost(ID).then((res) => {
@@ -91,8 +99,14 @@ function OtherPage() {
           </ul>
           <ul className="user-postList">
             {userPostList.map((item) => (
-              <li className="user-postList-item" key={item.id}>
-                <div className="post-hover">
+              <li
+                className="user-postList-item"
+                key={item.id}
+                id={item.id}
+                onClick={handleOpenPostModal}
+              >
+                <div className="post-hover"
+                id={item.id}>
                   <ul>
                     <li>
                       <span className="material-icons-outlined">favorite</span>
@@ -114,6 +128,7 @@ function OtherPage() {
           </ul>
         </div>
       </div>
+      <Post ref={postModalRef} currentPostID={currentPostID} />
     </>
   );
 }
