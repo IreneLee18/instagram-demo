@@ -15,16 +15,19 @@ export const handleDate = (data) => {
   // 相差幾月
   const month = new Date().getMonth() + 1 - publishYear;
   // 相差幾天
-  const days = Math.floor(timeLag / (24 * 3600 * 1000));
+  const days = parseInt(timeLag / 1000 / 60 / 60 / 24);
   // 相差幾小時
-  const leave1 = timeLag % (24 * 3600 * 1000); // 計算天數後剩餘的毫秒數
-  const hours = Math.floor(leave1 / (3600 * 1000));
+  const hours = parseInt(timeLag / 1000 / 60 / 60);
   // 相差幾分鐘
-  const leave2 = leave1 % (3600 * 1000); // 計算小時後剩餘的毫秒數
-  const minutes = Math.floor(leave2 / (60 * 1000));
+  const minutes = parseInt(timeLag / 1000 / 60);
   // 相差幾秒鐘
-  const leave3 = leave2 % (3600 * 1000); // 計算小時後剩餘的毫秒數
-  const secs = Math.floor(leave3 / (60 * 1000));
+  const secs = parseInt(timeLag / 1000);
+  // parseInt         ( timeLag / 1000 / 60 / 60 / 24);
+  // 將輸入的字串轉成整數( 相差毫秒數  豪秒    秒   分    時)
+  // 1秒 = 1000毫秒
+  // 60秒 = 1分
+  // 60分 = 1時
+  // 24時 = 1天
 
   if (year !== 0) {
     return `${publishMonth} 月, ${publishDate}, ${publishYear}`;

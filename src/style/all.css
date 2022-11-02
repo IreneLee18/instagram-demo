@@ -113,6 +113,177 @@ button {
   padding: 0;
 }
 
+.post {
+  min-height: 755.5px;
+  border: 1px solid #C7C7C7;
+  border-radius: 10px;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.post .account {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.post-header {
+  height: 56px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 12px;
+}
+
+.post-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post-user-pic {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+.post-user-pic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.post-pic {
+  height: 537.26px;
+  width: 470px;
+}
+
+.post-pic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.post-main {
+  padding: 12px;
+}
+
+.post-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+.post-icons button {
+  padding: 0;
+}
+
+.post-icons-left button {
+  margin-right: 20px;
+}
+
+.post-likeCount {
+  font-weight: bold;
+  padding-bottom: 12px;
+}
+
+.post-text {
+  line-height: 1.3;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post-text .account {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.post-text .hide-text-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post-text .hide-text {
+  max-width: 270px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.post-text .more-text {
+  width: 32px;
+  color: #8e8e8e;
+  margin-left: 6px;
+  cursor: pointer;
+}
+
+.post-text .tag {
+  margin-left: 4px;
+}
+
+.post-message {
+  margin-bottom: 12px;
+}
+
+.post-message .showMsgBtn {
+  padding: 0;
+  color: #8e8e8e;
+  font-size: 16px;
+}
+
+.post-date {
+  color: #8e8e8e;
+  font-size: 12px;
+}
+
+.post-footer label {
+  position: relative;
+}
+
+.post-footer label input {
+  background: transparent;
+  border-top: 1px solid #F0F0F0;
+  width: 100%;
+  border-radius: 0;
+  padding: 20px;
+}
+
+.post-footer label button {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
 .side {
   height: 100vh;
   display: -webkit-box;
@@ -668,147 +839,6 @@ button {
   font-weight: bold;
 }
 
-.post {
-  min-height: 755.5px;
-  border: 1px solid #C7C7C7;
-  border-radius: 10px;
-  margin-top: 12px;
-  overflow: hidden;
-}
-
-.post .account {
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.post-header {
-  height: 56px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 0 12px;
-}
-
-.post-user {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.post-user-pic {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 12px;
-}
-
-.post-user-pic img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.post-pic {
-  height: 537.26px;
-  width: 470px;
-}
-
-.post-pic img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.post-main {
-  min-height: 162.24px;
-  padding: 12px;
-}
-
-.post-icons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding-bottom: 12px;
-}
-
-.post-icons button {
-  padding: 0;
-}
-
-.post-icons-left button {
-  margin-right: 20px;
-}
-
-.post-likeCount {
-  font-weight: bold;
-  padding-bottom: 12px;
-}
-
-.post-text {
-  line-height: 1.3;
-  margin-bottom: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.post-text span {
-  display: inline-block;
-}
-
-.post-text .account {
-  margin-right: 6px;
-}
-
-.post-text .hide-text-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.post-text .hide-text {
-  max-width: 270px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.post-text .more-text {
-  width: 32px;
-  color: #8e8e8e;
-  margin-left: 6px;
-  cursor: pointer;
-}
-
-.post-date {
-  color: #8e8e8e;
-  font-size: 12px;
-}
-
 .modal {
   position: fixed;
   top: 0;
@@ -1208,10 +1238,6 @@ button {
 .post-detail .post-msg-content .text {
   font-size: 14px;
   line-height: 1.3;
-}
-
-.post-detail .post-msg-content .tag {
-  margin-left: 4px;
 }
 
 .post-detail .post-msg-content .post-date {
