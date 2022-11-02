@@ -2,7 +2,7 @@ import { userPostID, userPostComment, createComment } from "../../../utils/API";
 import { DataContext } from "../../../utils/Context";
 import { handleDate } from "../../../utils/Date";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 function HomePost({
   allPostList,
   setAllPostList,
@@ -28,7 +28,6 @@ function HomePost({
       });
   };
   const [msg, setMsg] = useState("");
-  const [postMsgList, setPostMsgList] = useState([]);
   const handleClickAddMsg = (e) => {
     setMsg("");
     const data = {
@@ -50,19 +49,6 @@ function HomePost({
           setAllPostList(finalPostList);
         });
       });
-  };
-  const handleClickSwitchFav = (e) => {
-    const list = postMsgList.filter((item) => {
-      if (item.id === e.target.id) {
-        if (item.like) {
-          item.like = false;
-        } else {
-          item.like = true;
-        }
-      }
-      return item;
-    });
-    setPostMsgList(list);
   };
 
   return (
