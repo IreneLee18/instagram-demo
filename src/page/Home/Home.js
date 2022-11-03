@@ -1,8 +1,4 @@
-import {
-  allPost,
-  allUser,
-  userPostComment,
-} from "../../utils/API";
+import { allPost, allUser, userPostComment } from "../../utils/API";
 import { useEffect, useState, useRef } from "react";
 import HomeSide from "./components/HomeSide";
 import HomePagePostMore from "../../components/Modal/PostMore/HomePagePostMore";
@@ -38,6 +34,7 @@ function Home() {
             .then((data) => {
               const finalPostList = postList.filter((i) => {
                 if (i.id === item.id) {
+                  item.userLike = false;
                   item.comments = data;
                   item.commentsLength = data.length;
                 }
@@ -50,24 +47,24 @@ function Home() {
   }, []);
   return (
     <>
-        <>
-          <div className="home">
-            <div className="home-listGroup">
-              <div className="home-list">
-                <HomeReality allUserList={allUserList} />
-                <HomePost
-                  allPostList={allPostList}
-                  setAllPostList={setAllPostList}
-                  handleOpenPostModal={handleOpenPostModal}
-                  handleOpenPostMoreModal={handleOpenPostMoreModal}
-                />
-              </div>
+      <>
+        <div className="home">
+          <div className="home-listGroup">
+            <div className="home-list">
+              <HomeReality allUserList={allUserList} />
+              <HomePost
+                allPostList={allPostList}
+                setAllPostList={setAllPostList}
+                handleOpenPostModal={handleOpenPostModal}
+                handleOpenPostMoreModal={handleOpenPostMoreModal}
+              />
             </div>
-            <HomeSide allUserList={allUserList} />
           </div>
-          <HomePagePostMore ref={postMoreModalRef} />
-          <Post ref={postModalRef} currentPostID={currentPostID} />
-        </>
+          <HomeSide allUserList={allUserList} />
+        </div>
+        <HomePagePostMore ref={postMoreModalRef} />
+        <Post ref={postModalRef} currentPostID={currentPostID} />
+      </>
     </>
   );
 }

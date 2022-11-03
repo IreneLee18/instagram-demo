@@ -66,6 +66,24 @@ function LayoutSide() {
       });
     }
   }, [searchInput]);
+
+  const handleClickLayout = (e) => {
+    console.log(e.target.id);
+    switch (e.target.id) {
+      case "home":
+        setIsSearch(false);
+        setSearchInput("");
+        setSearchToggle(false);
+        return navigate("/");
+      case "mypage":
+        setIsSearch(false);
+        setSearchInput("");
+        setSearchToggle(false);
+        return navigate("/mypage");
+      default:
+        new Error("err");
+    }
+  };
   return (
     <>
       {user !== null ? (
@@ -76,16 +94,22 @@ function LayoutSide() {
               style={searchToggle ? { width: "5%" } : { width: "17%" }}
             >
               <div>
-                <div className="side-logo">
+                <div className="side-logo" id="home">
                   <div
                     className={searchToggle ? "side-logo-sm" : "side-logo-big"}
-                    onClick={() => navigate("/")}
+                    id="home"
+                    onClick={handleClickLayout}
                   ></div>
                 </div>
                 <ul className="side-list">
-                  <li onClick={() => navigate("/")}>
-                    <span className="icon material-symbols-outlined">home</span>
-                    <span style={searchToggle ? { display: "none" } : {}}>
+                  <li id="home" onClick={handleClickLayout}>
+                    <span className="icon material-symbols-outlined" id="home">
+                      home
+                    </span>
+                    <span
+                      style={searchToggle ? { display: "none" } : {}}
+                      id="home"
+                    >
                       首頁
                     </span>
                   </li>
@@ -138,11 +162,14 @@ function LayoutSide() {
                       建立
                     </span>
                   </li>
-                  <li onClick={() => navigate("/mypage")}>
-                    <div className="user-pic">
-                      <img src={user.picture} alt={user.id} />
+                  <li id="mypage" onClick={handleClickLayout}>
+                    <div className="user-pic" id="mypage">
+                      <img src={user.picture} alt={user.id} id="mypage" />
                     </div>
-                    <span style={searchToggle ? { display: "none" } : {}}>
+                    <span
+                      style={searchToggle ? { display: "none" } : {}}
+                      id="mypage"
+                    >
                       個人檔案
                     </span>
                   </li>

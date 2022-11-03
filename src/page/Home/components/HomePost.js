@@ -1,4 +1,9 @@
-import { userPostID, userPostComment, createComment } from "../../../utils/API";
+import {
+  userPostID,
+  updateUsePostID,
+  userPostComment,
+  createComment,
+} from "../../../utils/API";
 import { DataContext } from "../../../utils/Context";
 import { handleDate } from "../../../utils/Date";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +17,6 @@ function HomePost({
   const { user } = useContext(DataContext);
   const navigate = useNavigate();
   const handleClickShowMoreText = (e) => {
-    console.log(e.target.id);
     userPostID(e.target.id)
       .then((res) => res.text)
       .then((fullText) => {
@@ -51,6 +55,31 @@ function HomePost({
       });
   };
 
+  const handleClickAddLike = (e) => {
+    allPostList.forEach((item) => {
+      if (item.id === e.target.id && !item.userLike) {
+        userPostID(e.target.id)
+          .then((res) => {
+            const list = { ...res };
+            list.likes++;
+            return list;
+          })
+          .then((data) => {
+            updateUsePostID(e.target.id, data).then((res) => {
+              const finalList = allPostList.filter((item) => {
+                if (item.id === res.id) {
+                  item.userLike = true;
+                  item.likes++;
+                }
+                return item;
+              });
+              setAllPostList(finalList);
+            });
+          });
+      }
+    });
+  };
+
   return (
     <ul className="home-list-postList">
       {allPostList.length !== 0 &&
@@ -77,16 +106,37 @@ function HomePost({
                 more_horiz
               </button>
             </div>
-            <div className="post-pic" id={item.id}>
+            <div
+              className="post-pic"
+              id={item.id}
+              onDoubleClick={handleClickAddLike}
+            >
+              {item.userLike ? (
+                <div className="show-fav">
+                  <span className="material-icons-outlined">favorite</span>
+                </div>
+              ) : null}
               <img src={item.image} alt={item.id} id={item.id} />
             </div>
             <div className="post-main">
               <ul className="post-icons">
                 <li className="post-icons-left">
-                  <button className="material-symbols-outlined">
+                  <button
+                    className={
+                      item.userLike
+                        ? `material-icons-outlined red-color`
+                        : "material-symbols-outlined"
+                    }
+                    id={item.id}
+                    onClick={handleClickAddLike}
+                  >
                     favorite
                   </button>
-                  <button className="material-symbols-outlined">
+                  <button
+                    className="material-symbols-outlined"
+                    id={item.id}
+                    onClick={handleOpenPostModal}
+                  >
                     maps_ugc
                   </button>
 

@@ -30,6 +30,15 @@ export const userPostID = (id) => {
     headers,
   }).then((res) => res.json());
 };
+
+export const updateUsePostID = (id, data) => {
+  return fetch(`https://dummyapi.io/data/v1/post/${id}`, {
+    method: "PUT",
+    headers: postHeaders,
+    body: JSON.stringify(data),
+  }).then((res) => res.json());
+};
+
 export const userPostComment = (id) => {
   return fetch(`https://dummyapi.io/data/v1/post/${id}/comment`, {
     headers,

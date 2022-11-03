@@ -167,6 +167,53 @@ button {
 .post-pic {
   height: 537.26px;
   width: 470px;
+  position: relative;
+  cursor: pointer;
+}
+
+.post-pic .show-fav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  cursor: default;
+}
+
+.post-pic .show-fav span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 100px;
+  color: #fff;
+  -webkit-animation: showFav 1s forwards;
+          animation: showFav 1s forwards;
+}
+
+@-webkit-keyframes showFav {
+  0% {
+    color: #fff;
+  }
+  70% {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+@keyframes showFav {
+  0% {
+    color: #fff;
+  }
+  70% {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    color: transparent;
+  }
 }
 
 .post-pic img {
