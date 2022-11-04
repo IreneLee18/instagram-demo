@@ -10,8 +10,8 @@ export const allUser = () => {
     headers,
   }).then((res) => res.json());
 };
-export const allPost = (limit) => {
-  return fetch(`https://dummyapi.io/data/v1/post?page=0&limit=${limit}`, {
+export const allPost = (page,limit) => {
+  return fetch(`https://dummyapi.io/data/v1/post?page=${page}&limit=${limit}`, {
     headers,
   }).then((res) => res.json());
 };
@@ -27,6 +27,13 @@ export const userPost = (id) => {
 };
 export const userPostID = (id) => {
   return fetch(`https://dummyapi.io/data/v1/post/${id}`, {
+    headers,
+  }).then((res) => res.json());
+};
+
+export const deleteUsePostID = (id) => {
+  return fetch(`https://dummyapi.io/data/v1/post/${id}`, {
+    method: "DELETE",
     headers,
   }).then((res) => res.json());
 };
@@ -51,6 +58,13 @@ export const createComment = (data) => {
     body: JSON.stringify(data),
   }).then((res) => res.json());
 };
+export const deleteComment = (id) => {
+  return fetch(`https://dummyapi.io/data/v1/comment/${id}`, {
+    method: "DELETE",
+    headers,
+  }).then((res) => res.json());
+};
+
 export const createPost = (data) => {
   return fetch("https://dummyapi.io/data/v1/post/create", {
     method: "POST",

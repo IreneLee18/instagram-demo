@@ -1,15 +1,7 @@
-// import { userID, userPost } from "../../../utils/API";
 import { DataContext } from "../../../utils/Context";
-import { useState, useRef,useContext } from "react";
-import Post from "../../../components/Modal/Post/Post";
-function MyPage() {
-  const {user,userPostList} = useContext(DataContext)
-  const postModalRef = useRef();
-  const [currentPostID, setCurrentPostID] = useState("");
-  const handleOpenPostModal = (e) => {
-    postModalRef.current.openPostModal();
-    setCurrentPostID(e.target.id);
-  };
+import { useContext } from "react";
+function MyPage({ userPostList, userPostListLength, handleOpenPostModal }) {
+  const { user } = useContext(DataContext);
   return (
     <>
       {user !== null && userPostList !== null ? (
@@ -38,7 +30,7 @@ function MyPage() {
                 </ul>
                 <ul className="userPostFollow">
                   <li>
-                    <span>{userPostList.length}</span> 貼文
+                    <span>{userPostListLength}</span> 貼文
                   </li>
                   <li>
                     <span>487</span> 位粉絲
@@ -94,15 +86,15 @@ function MyPage() {
                         </li>
                       </ul>
                     </div>
-                    <div className="post-pic">
-                      <img src={item.image} alt={item.id} />
+                    <div className="post-pic" id={item.id}>
+                      <img src={item.image} alt={item.id} id={item.id} />
                     </div>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-          <Post ref={postModalRef} currentPostID={currentPostID} />
+          {/* <Post ref={postModalRef} currentPostID={currentPostID} /> */}
         </>
       ) : null}
     </>

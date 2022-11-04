@@ -1,4 +1,12 @@
-import { userPostID, userPostComment, createComment } from "../../../utils/API";
+import {
+  userPostID,
+  userPostComment,
+  createComment,
+  deleteComment,
+  userPost,
+  updateUsePostID,
+  deleteUsePostID,
+} from "../../../utils/API";
 import { DataContext } from "../../../utils/Context";
 import { handleDate } from "../../../utils/Date";
 import { useNavigate } from "react-router-dom";
@@ -11,13 +19,26 @@ import {
   forwardRef,
 } from "react";
 import MyPagePostMore from "../PostMore/MyPagePostMore";
+import HomePagePostMore from "../PostMore/HomePagePostMore";
+import PostMoreComment from "../PostMore/PostMoreComment";
 function Post({ currentPostID }, ref) {
-  const { user } = useContext(DataContext);
+  const { user, setUserPostList, ownerID, userPostListID, setUserPostListID } =
+    useContext(DataContext);
   const navigate = useNavigate();
   const [modalState, setModalState] = useState(false);
-  const postMoreModalRef = useRef();
-  const handleOpenModal = () => {
-    postMoreModalRef.current.openModal();
+  const [currentComment, setCurrentComment] = useState("");
+  const myPostMoreModalRef = useRef();
+  const otherPostMoreModalRef = useRef();
+  const postMoreCommentModalRef = useRef();
+  const handleOpenModal = (e) => {
+    if (!userPostListID.includes(currentPostID)) {
+      otherPostMoreModalRef.current.openModal();
+    } else if (e.target.id.includes("edit")) {
+      postMoreCommentModalRef.current.openModal();
+      setCurrentComment(e.target.id.substr(4, e.target.length));
+    } else {
+      myPostMoreModalRef.current.openModal();
+    }
   };
 
   const [postUser, setPostUser] = useState(null);
@@ -30,18 +51,21 @@ function Post({ currentPostID }, ref) {
   useEffect(() => {
     if (modalState) {
       document.body.style.overflow = "hidden";
-      userPostID(currentPostID).then((res) => setPostUser(res));
+      userPostID(currentPostID).then((res) => {
+        res.userLike = false;
+        setPostUser(res);
+      });
       userPostComment(currentPostID).then((res) => {
         res.data.map((item) => (item.like = false));
         setPostMsgList(res.data);
       });
-      console.log(currentPostID);
     } else {
       document.body.style.overflow = "scroll";
       setPostUser(null);
       setPostMsgList(null);
     }
   }, [currentPostID, modalState]);
+
   const [msg, setMsg] = useState("");
   const handleClickAddMsg = () => {
     setMsg("");
@@ -72,6 +96,63 @@ function Post({ currentPostID }, ref) {
     });
     setPostMsgList(list);
   };
+  const handleClickSwitchLike = () => {
+    if (postUser.userLike) {
+      userPostID(currentPostID)
+        .then((res) => {
+          const list = { ...res };
+          list.likes--;
+          return list;
+        })
+        .then((res) => {
+          updateUsePostID(currentPostID, res).then(() => {
+            const postData = { ...postUser };
+            postData.likes--;
+            postData.userLike = false;
+            setPostUser(postData);
+          });
+        });
+    } else {
+      userPostID(currentPostID)
+        .then((res) => {
+          const list = { ...res };
+          list.likes++;
+          return list;
+        })
+        .then((res) => {
+          updateUsePostID(currentPostID, res).then(() => {
+            const postData = { ...postUser };
+            postData.likes++;
+            postData.userLike = true;
+            setPostUser(postData);
+          });
+        });
+    }
+  };
+  const handleClickDeletePost = () => {
+    deleteUsePostID(currentPostID).then(() => {
+      setModalState(false);
+      myPostMoreModalRef.current.closeModal();
+      userPost(ownerID).then((res) => {
+        setUserPostList(res.data);
+        const list = [];
+        res.data.forEach((item) => list.push(item.id));
+        setUserPostListID(list);
+      });
+    });
+  };
+  const handleClickDeleteComment = () => {
+    deleteComment(currentComment).then(() => {
+      postMoreCommentModalRef.current.closeModal();
+      userPost(ownerID).then((res) => {
+        userPostComment(currentPostID).then((res) => {
+          res.data.map((item) => (item.like = false));
+          setPostMsgList(res.data);
+        });
+      });
+    });
+  };
+
   if (!modalState) return null;
 
   return (
@@ -173,6 +254,16 @@ function Post({ currentPostID }, ref) {
                                 <span>{item.message}</span>
                                 <div className="post-date">
                                   {handleDate(item.publishDate)}
+                                  {item.owner.id === ownerID ||
+                                  userPostListID.includes(item.id) ? (
+                                    <button
+                                      className="material-symbols-outlined"
+                                      id={`edit${item.id}`}
+                                      onClick={handleOpenModal}
+                                    >
+                                      more_horiz
+                                    </button>
+                                  ) : null}
                                 </div>
                               </div>
                             </div>
@@ -196,7 +287,14 @@ function Post({ currentPostID }, ref) {
                   <div className="post-detail-footer">
                     <ul className="post-icons">
                       <li className="post-icons-left">
-                        <button className="material-symbols-outlined">
+                        <button
+                          className={
+                            postUser.userLike
+                              ? `material-icons-outlined red-color`
+                              : "material-symbols-outlined"
+                          }
+                          onClick={handleClickSwitchLike}
+                        >
                           favorite
                         </button>
                         <button className="material-symbols-outlined">
@@ -245,7 +343,15 @@ function Post({ currentPostID }, ref) {
               </div>
             </div>
           </div>
-          <MyPagePostMore ref={postMoreModalRef} />
+          <MyPagePostMore
+            ref={myPostMoreModalRef}
+            handleClickDeletePost={handleClickDeletePost}
+          />
+          <HomePagePostMore ref={otherPostMoreModalRef} />
+          <PostMoreComment
+            ref={postMoreCommentModalRef}
+            handleClickDeleteComment={handleClickDeleteComment}
+          />
         </>
       ) : null}
     </>

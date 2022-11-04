@@ -1,4 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap");
+@-webkit-keyframes showFav {
+  0% {
+    color: #fff;
+  }
+  70% {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    color: transparent;
+  }
+}
+@keyframes showFav {
+  0% {
+    color: #fff;
+  }
+  70% {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    color: transparent;
+  }
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -190,30 +213,6 @@ button {
   color: #fff;
   -webkit-animation: showFav 1s forwards;
           animation: showFav 1s forwards;
-}
-
-@-webkit-keyframes showFav {
-  0% {
-    color: #fff;
-  }
-  70% {
-    color: rgba(255, 255, 255, 0.8);
-  }
-  100% {
-    color: transparent;
-  }
-}
-
-@keyframes showFav {
-  0% {
-    color: #fff;
-  }
-  70% {
-    color: rgba(255, 255, 255, 0.8);
-  }
-  100% {
-    color: transparent;
-  }
 }
 
 .post-pic img {
@@ -1107,6 +1106,7 @@ button {
 
 .userPage-main .user-postList-item:hover .post-hover {
   opacity: 1;
+  z-index: 1;
 }
 
 .userPage-main .user-postList .post-hover {
@@ -1181,6 +1181,7 @@ button {
   width: 55%;
   height: 100%;
   position: relative;
+  cursor: default;
 }
 
 .postDetail-pic div {
@@ -1198,6 +1199,28 @@ button {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.postDetail-show-fav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  cursor: default;
+}
+
+.postDetail-show-fav span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 100px;
+  color: #fff;
+  -webkit-animation: showFav 1s forwards;
+          animation: showFav 1s forwards;
 }
 
 .post-detail {
@@ -1289,6 +1312,16 @@ button {
 
 .post-detail .post-msg-content .post-date {
   margin-top: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post-detail .post-msg-content .post-date button {
+  color: #8e8e8e;
 }
 
 .post-detail .post-msg-favBtn {

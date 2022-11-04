@@ -1,6 +1,6 @@
 // import { deleteUsePostID } from "../../../utils/API";
 import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
-function PostMore({ handleClickDeletePost }, ref) {
+function PostMoreComment({ handleClickDeleteComment }, ref) {
   const [modalState, setModalState] = useState(false);
   useImperativeHandle(ref, () => ({
     openModal: () => setModalState(true),
@@ -24,21 +24,15 @@ function PostMore({ handleClickDeletePost }, ref) {
         <div className="modal-content">
           <ul className="modal-body postMore-body">
             <li>
-              <button className="red-color fwb" onClick={handleClickDeletePost}>
+              <button className="red-color fwb">檢舉</button>
+            </li>
+            <li>
+              <button
+                className="red-color fwb"
+                onClick={handleClickDeleteComment}
+              >
                 刪除
               </button>
-            </li>
-            <li>
-              <button>編輯</button>
-            </li>
-            <li>
-              <button>隱藏按讚數</button>
-            </li>
-            <li>
-              <button>關閉留言功能</button>
-            </li>
-            <li>
-              <button>前往貼文</button>
             </li>
             <li>
               <button onClick={() => setModalState(false)}>取消</button>
@@ -50,4 +44,4 @@ function PostMore({ handleClickDeletePost }, ref) {
   );
 }
 
-export default forwardRef(PostMore);
+export default forwardRef(PostMoreComment);

@@ -55,6 +55,7 @@ function HomePost({
       });
   };
 
+  // only add like : click picture
   const handleClickAddLike = (e) => {
     allPostList.forEach((item) => {
       if (item.id === e.target.id && !item.userLike) {
@@ -76,6 +77,52 @@ function HomePost({
               setAllPostList(finalList);
             });
           });
+      }
+    });
+  };
+  // can add like and delete like : click fav icon
+  const handleClickSwitchLike = (e) => {
+    allPostList.forEach((item) => {
+      if (item.id === e.target.id) {
+        if (item.userLike) {
+          userPostID(e.target.id)
+            .then((res) => {
+              const list = { ...res };
+              list.likes--;
+              return list;
+            })
+            .then((data) => {
+              updateUsePostID(e.target.id, data).then((res) => {
+                const finalList = allPostList.filter((item) => {
+                  if (item.id === res.id) {
+                    item.userLike = false;
+                    item.likes--;
+                  }
+                  return item;
+                });
+                setAllPostList(finalList);
+              });
+            });
+        } else {
+          userPostID(e.target.id)
+            .then((res) => {
+              const list = { ...res };
+              list.likes++;
+              return list;
+            })
+            .then((data) => {
+              updateUsePostID(e.target.id, data).then((res) => {
+                const finalList = allPostList.filter((item) => {
+                  if (item.id === res.id) {
+                    item.userLike = true;
+                    item.likes++;
+                  }
+                  return item;
+                });
+                setAllPostList(finalList);
+              });
+            });
+        }
       }
     });
   };
@@ -128,7 +175,7 @@ function HomePost({
                         : "material-symbols-outlined"
                     }
                     id={item.id}
-                    onClick={handleClickAddLike}
+                    onClick={handleClickSwitchLike}
                   >
                     favorite
                   </button>
