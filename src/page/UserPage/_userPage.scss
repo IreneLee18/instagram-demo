@@ -3,66 +3,162 @@
   margin: 0 auto;
   padding: 30px 0;
 
+  @media (max-width:820px) {
+    width: 100%;
+  }
+
   &-header {
     display: flex;
     margin-bottom: 44px;
+
+    @media (max-width:414px) {
+      flex-wrap: wrap;
+    }
+
+    .userAccount-sm {
+      display: none;
+
+      @media (max-width:414px) {
+        display: block;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: #fff;
+        font-size: 32px;
+        margin-left: 20px;
+        padding: 10px 0;
+        span{
+          &:nth-child(1){
+            margin-right: 4px;
+          }
+        }
+      }
+    }
 
     .userPicGroup {
       width: 40%;
       @include flex-center;
       margin-right: 30px;
+
+      @media (max-width:414px) {
+        margin-top: 40px;
+        margin-right: 15px;
+        width: 30%;
+      }
     }
 
     .userPic {
       @include userPic(150px);
+
+      @media (max-width:414px) {
+        @include userPic(80px);
+      }
     }
 
     .userDetail {
       width: 60%;
 
-      .userAccount {
-        @include flex-align-items-center;
-        margin-bottom: 20px;
+      @media (max-width:414px) {
+        width: 100%;
+        margin-top: 10px;
+        margin-left: 20px;
+      }
+    }
 
-        .account {
-          font-size: 30px;
+    .userAccount {
+      @include flex-align-items-center;
+      margin-bottom: 20px;
+
+      @media (max-width:414px) {
+        display: none;
+      }
+
+      .account {
+        font-size: 30px;
+      }
+
+      .edit,
+      .sendMsg {
+        border: 1px solid $third-gray;
+        border-radius: 5px;
+        padding: 2.5px 5px;
+        margin-left: 12px;
+        margin-right: 6px;
+
+        button {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .userPostFollow {
+      @include flex-align-items-center;
+      margin-bottom: 20px;
+
+      li {
+        font-size: 18px;
+        margin-right: 36px;
+
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+
+    .userPostFollow-pc {
+
+      @media (max-width:414px) {
+        display: none;
+      }
+    }
+
+    .userPostFollow-sm {
+      display: none;
+
+      @media (max-width:414px) {
+        display: flex;
+        width: 60%;
+        margin-top: 40px;
+
+        li {
+          width: 33.3333%;
+          margin-right: 0;
+          text-align: center;
         }
 
-        .edit,.sendMsg {
-          border: 1px solid $third-gray;
+        span {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+
+
+    .userContent {
+      li {
+        font-size: 18px;
+        line-height: 1.3;
+      }
+
+      .name {
+        font-weight: bold;
+      }
+
+      .edit-sm {
+        display: none;
+
+        @media (max-width:414px) {
+          display: block;
+          background: $light-gray;
           border-radius: 5px;
           padding: 2.5px 5px;
-          margin-left: 12px;
-          margin-right: 6px;
+          text-align: center;
+          margin-top: 10px;
+          margin-right: 20px;
 
           button {
             font-weight: bold;
           }
-        }
-      }
-
-      .userPostFollow {
-        @include flex-align-items-center;
-        margin-bottom: 20px;
-
-        li {
-          font-size: 18px;
-          margin-right: 36px;
-
-          span {
-            font-weight: bold;
-          }
-        }
-      }
-
-      .userContent {
-        li {
-          font-size: 18px;
-          line-height: 1.3;
-        }
-
-        .name {
-          font-weight: bold;
         }
       }
     }
@@ -80,19 +176,56 @@
         color: $primary-gray;
         cursor: pointer;
         font-weight: bold;
+
+        @media (max-width:414px) {
+          padding: 8px 0;
+          text-align: center;
+          margin-right: 0;
+          width: 25%;
+          text-align: center;
+        }
+
+      }
+
+      .showOnePost {
+        display: none;
+
+        @media (max-width:820px) {
+          display: flex;
+        }
       }
 
       .selected {
         border-top: 1px solid $primary-black;
         color: $primary-black;
+
+        @media (max-width:414px) {
+          border-top: none;
+          color: $blue;
+        }
       }
 
       span {
         font-size: 14px;
         display: inline-block;
 
+        @media (max-width:414px) {
+          width: 100%;
+        }
+
         &:first-child {
           margin-right: 6px;
+
+          @media (max-width:414px) {
+            margin-right: 0;
+            font-size: 24px;
+          }
+        }
+
+        &:last-child {
+          @media (max-width:414px) {
+            display: none;
+          }
         }
       }
     }
@@ -101,13 +234,24 @@
       display: flex;
       flex-wrap: wrap;
 
+      @media (max-width:820px) {
+        justify-content: center;
+      }
+
       &-item {
-        width: 293px;
-        height: 293px;
+        width: 30%;
+        padding-bottom: 30%;
         margin-right: 28px;
         margin-bottom: 28px;
         position: relative;
         cursor: pointer;
+
+        @media (max-width:414px) {
+          width: 32%;
+          padding-bottom: 32%;
+          margin-right: 4px;
+          margin-bottom: 4px;
+        }
 
         &:nth-child(3n+3) {
           margin-right: 0;
@@ -121,7 +265,7 @@
         }
       }
 
-      .post-hover {
+      &-item-hover {
         @include position-t-r-b-l-0(absolute);
         background: rgba(0, 0, 0, .4);
         opacity: 0;
@@ -147,9 +291,8 @@
         }
       }
 
-      .post-pic {
-        width: 293px;
-        height: 293px;
+      &-item-pic {
+        @include position-t-r-b-l-0(absolute);
 
         img {
           width: 100%;

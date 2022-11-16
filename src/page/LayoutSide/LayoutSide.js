@@ -108,6 +108,7 @@ function LayoutSide() {
                     </span>
                     <span
                       style={searchToggle ? { display: "none" } : {}}
+                      className="d-md-none"
                       id="home"
                     >
                       首頁
@@ -128,7 +129,10 @@ function LayoutSide() {
                     >
                       search
                     </span>
-                    <span style={searchToggle ? { display: "none" } : {}}>
+                    <span
+                      style={searchToggle ? { display: "none" } : {}}
+                      className="d-md-none"
+                    >
                       搜尋
                     </span>
                   </li>
@@ -136,13 +140,19 @@ function LayoutSide() {
                     <span className="icon material-symbols-outlined">
                       explore
                     </span>
-                    <span style={searchToggle ? { display: "none" } : {}}>
+                    <span
+                      style={searchToggle ? { display: "none" } : {}}
+                      className="d-md-none"
+                    >
                       探索
                     </span>
                   </li>
                   <li>
                     <span className="icon material-symbols-outlined">chat</span>
-                    <span style={searchToggle ? { display: "none" } : {}}>
+                    <span
+                      style={searchToggle ? { display: "none" } : {}}
+                      className="d-md-none"
+                    >
                       訊息
                     </span>
                   </li>
@@ -150,7 +160,10 @@ function LayoutSide() {
                     <span className="icon material-symbols-outlined">
                       favorite
                     </span>
-                    <span style={searchToggle ? { display: "none" } : {}}>
+                    <span
+                      style={searchToggle ? { display: "none" } : {}}
+                      className="d-md-none"
+                    >
                       通知
                     </span>
                   </li>
@@ -158,7 +171,10 @@ function LayoutSide() {
                     <span className="icon material-icons-outlined">
                       add_circle_outline
                     </span>
-                    <span style={searchToggle ? { display: "none" } : {}}>
+                    <span
+                      style={searchToggle ? { display: "none" } : {}}
+                      className="d-md-none"
+                    >
                       建立
                     </span>
                   </li>
@@ -168,6 +184,7 @@ function LayoutSide() {
                     </div>
                     <span
                       style={searchToggle ? { display: "none" } : {}}
+                      className="d-md-none"
                       id="mypage"
                     >
                       個人檔案
@@ -178,7 +195,7 @@ function LayoutSide() {
                   <div onClick={() => setMoreToggle((state) => !state)}>
                     <span className="icon material-symbols-outlined">menu</span>
                     <span
-                      className={moreToggle ? "fwb" : ""}
+                      className={`d-md-none ${moreToggle ? "fwb" : ""}`}
                       style={searchToggle ? { display: "none" } : {}}
                     >
                       更多
@@ -319,6 +336,38 @@ function LayoutSide() {
               ) : null}
             </div>
           </div>
+          <nav className="side-sm">
+            <ul>
+              <li id="home" onClick={handleClickLayout}>
+                <span className="icon material-symbols-outlined" id="home">
+                  home
+                </span>
+              </li>
+              <li>
+                <span
+                  className={`icon material-symbols-outlined ${
+                    searchToggle ? "icon-circle" : ""
+                  }`}
+                >
+                  search
+                </span>
+              </li>
+
+              <li>
+                <span className="icon material-symbols-outlined">chat</span>
+              </li>
+              <li>
+                <span className="icon material-icons-outlined">
+                  add_circle_outline
+                </span>
+              </li>
+              <li id="mypage" onClick={handleClickLayout}>
+                <div className="user-pic" id="mypage">
+                  <img src={user.picture} alt={user.id} id="mypage" />
+                </div>
+              </li>
+            </ul>
+          </nav>
           <div className="main">
             <Outlet />
           </div>

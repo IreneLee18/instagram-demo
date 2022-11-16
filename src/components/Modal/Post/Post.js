@@ -31,7 +31,11 @@ function Post({ currentPostID }, ref) {
   const otherPostMoreModalRef = useRef();
   const postMoreCommentModalRef = useRef();
   const handleOpenModal = (e) => {
-    if (!userPostListID.includes(currentPostID)) {
+    console.log(e.target.id);
+    if (
+      !userPostListID.includes(currentPostID) &&
+      !e.target.id.includes("edit")
+    ) {
       otherPostMoreModalRef.current.openModal();
     } else if (e.target.id.includes("edit")) {
       postMoreCommentModalRef.current.openModal();

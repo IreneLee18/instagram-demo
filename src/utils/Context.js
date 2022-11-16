@@ -10,11 +10,12 @@ export const DataProvider = ({ children }) => {
     userID(ownerID).then((res) => setUser(res));
     userPost(ownerID).then((res) => {
       setUserPostList(res.data);
-      const list = [];
-      res.data.forEach((item) => list.push(item.id));
-      setUserPostListID(list);
+      const idList = res.data.map((item) => item.id);
+      setUserPostListID(idList);
     });
   }, []);
+  if (user === null || userPostList === null || userPostListID === null)
+    return null;
   return (
     <DataContext.Provider
       value={{

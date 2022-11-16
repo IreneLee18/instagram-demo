@@ -114,12 +114,30 @@ button {
   display: none;
 }
 
+@media (max-width: 820px) {
+  .d-md-none {
+    display: none;
+  }
+}
+
 .fwb {
   font-weight: bold;
 }
 
 .main {
   width: 83%;
+}
+
+@media (max-width: 820px) {
+  .main {
+    width: 90%;
+  }
+}
+
+@media (max-width: 414px) {
+  .main {
+    width: 100%;
+  }
 }
 
 .red-color {
@@ -136,12 +154,24 @@ button {
   padding: 0;
 }
 
+.bd-none {
+  border: none !important;
+}
+
 .post {
   min-height: 755.5px;
   border: 1px solid #C7C7C7;
   border-radius: 10px;
   margin-top: 12px;
   overflow: hidden;
+}
+
+@media (max-width: 414px) {
+  .post {
+    border: none;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
 }
 
 .post .account {
@@ -189,7 +219,7 @@ button {
 
 .post-pic {
   height: 537.26px;
-  width: 470px;
+  width: 100%;
   position: relative;
   cursor: pointer;
 }
@@ -284,6 +314,12 @@ button {
   overflow: hidden;
 }
 
+@media (max-width: 414px) {
+  .post-text .hide-text {
+    max-width: 200px;
+  }
+}
+
 .post-text .more-text {
   width: 32px;
   color: #8e8e8e;
@@ -308,6 +344,12 @@ button {
 .post-date {
   color: #8e8e8e;
   font-size: 12px;
+}
+
+@media (max-width: 414px) {
+  .post-footer {
+    display: none;
+  }
 }
 
 .post-footer label {
@@ -338,11 +380,23 @@ button {
   z-index: 1;
 }
 
+@media (max-width: 414px) {
+  .side {
+    display: none;
+  }
+}
+
 .side-all {
   position: fixed;
   border-right: 1px solid #C7C7C7;
   padding: 12px;
   height: 100%;
+}
+
+@media (max-width: 820px) {
+  .side-all {
+    width: 10% !important;
+  }
 }
 
 .side-logo {
@@ -362,6 +416,17 @@ button {
   background-size: cover;
   background-repeat: no-repeat;
   cursor: pointer;
+}
+
+@media (max-width: 820px) {
+  .side-logo-big {
+    width: 24px;
+    height: 24px;
+    background-image: url("https://cdn-icons-png.flaticon.com/512/87/87390.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-left: 12px;
+  }
 }
 
 .side-logo-sm {
@@ -486,6 +551,12 @@ button {
   border-left: none;
   -webkit-box-shadow: 1px 2px 10px #E0E0E0;
           box-shadow: 1px 2px 10px #E0E0E0;
+}
+
+@media (max-width: 820px) {
+  .side-search {
+    left: 10%;
+  }
 }
 
 .side-search h2 {
@@ -651,24 +722,138 @@ button {
   font-size: 18px;
 }
 
+.side-sm {
+  display: none;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1200;
+  background: #fff;
+  border-top: 1px solid #C7C7C7;
+}
+
+@media (max-width: 414px) {
+  .side-sm {
+    display: block;
+  }
+}
+
+.side-sm ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.side-sm li {
+  height: 48px;
+  padding: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.side-sm li span {
+  font-size: 32px;
+}
+
+.side-sm .user-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.side-sm .user-pic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.header-home {
+  display: none;
+}
+
+@media (max-width: 414px) {
+  .header-home {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 44px;
+    background: #fff;
+    border-bottom: 1px solid #C7C7C7;
+    padding: 0 12px;
+    z-index: 1200;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.header-home-logo {
+  width: 110px;
+  height: 40px;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1600px-Instagram_logo.svg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
 .home {
   width: 100%;
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 36px;
+  padding: 36px 0;
   background: #FAFAFA;
+}
+
+@media (max-width: 414px) {
+  .home {
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 48px;
+  }
 }
 
 .home-listGroup {
   width: 502px;
 }
 
+@media (max-width: 414px) {
+  .home-listGroup {
+    width: 100%;
+  }
+}
+
 .home-list {
   width: 470px;
+}
+
+@media (max-width: 414px) {
+  .home-list {
+    width: 100%;
+  }
 }
 
 .home-list-reality {
@@ -680,6 +865,16 @@ button {
   display: -ms-flexbox;
   display: flex;
   background: #fff;
+}
+
+@media (max-width: 414px) {
+  .home-list-reality {
+    border-right: none;
+    border-left: none;
+    border-radius: 0;
+    background: #F0F0F0;
+    padding-top: 52px;
+  }
 }
 
 .home .reality {
@@ -756,6 +951,12 @@ button {
 .home-side {
   width: 319px;
   margin-top: 24px;
+}
+
+@media (max-width: 820px) {
+  .home-side {
+    display: none;
+  }
 }
 
 .home .user {
@@ -952,11 +1153,44 @@ button {
   padding: 30px 0;
 }
 
+@media (max-width: 820px) {
+  .userPage {
+    width: 100%;
+  }
+}
+
 .userPage-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-bottom: 44px;
+}
+
+@media (max-width: 414px) {
+  .userPage-header {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
+.userPage-header .userAccount-sm {
+  display: none;
+}
+
+@media (max-width: 414px) {
+  .userPage-header .userAccount-sm {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    font-size: 32px;
+    margin-left: 20px;
+    padding: 10px 0;
+  }
+  .userPage-header .userAccount-sm span:nth-child(1) {
+    margin-right: 4px;
+  }
 }
 
 .userPage-header .userPicGroup {
@@ -973,6 +1207,14 @@ button {
   margin-right: 30px;
 }
 
+@media (max-width: 414px) {
+  .userPage-header .userPicGroup {
+    margin-top: 40px;
+    margin-right: 15px;
+    width: 30%;
+  }
+}
+
 .userPage-header .userPic {
   width: 150px;
   height: 150px;
@@ -987,11 +1229,34 @@ button {
      object-fit: cover;
 }
 
+@media (max-width: 414px) {
+  .userPage-header .userPic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .userPage-header .userPic img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+
 .userPage-header .userDetail {
   width: 60%;
 }
 
-.userPage-header .userDetail .userAccount {
+@media (max-width: 414px) {
+  .userPage-header .userDetail {
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+}
+
+.userPage-header .userAccount {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1001,11 +1266,18 @@ button {
   margin-bottom: 20px;
 }
 
-.userPage-header .userDetail .userAccount .account {
+@media (max-width: 414px) {
+  .userPage-header .userAccount {
+    display: none;
+  }
+}
+
+.userPage-header .userAccount .account {
   font-size: 30px;
 }
 
-.userPage-header .userDetail .userAccount .edit, .userPage-header .userDetail .userAccount .sendMsg {
+.userPage-header .userAccount .edit,
+.userPage-header .userAccount .sendMsg {
   border: 1px solid #C7C7C7;
   border-radius: 5px;
   padding: 2.5px 5px;
@@ -1013,11 +1285,12 @@ button {
   margin-right: 6px;
 }
 
-.userPage-header .userDetail .userAccount .edit button, .userPage-header .userDetail .userAccount .sendMsg button {
+.userPage-header .userAccount .edit button,
+.userPage-header .userAccount .sendMsg button {
   font-weight: bold;
 }
 
-.userPage-header .userDetail .userPostFollow {
+.userPage-header .userPostFollow {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1027,22 +1300,75 @@ button {
   margin-bottom: 20px;
 }
 
-.userPage-header .userDetail .userPostFollow li {
+.userPage-header .userPostFollow li {
   font-size: 18px;
   margin-right: 36px;
 }
 
-.userPage-header .userDetail .userPostFollow li span {
+.userPage-header .userPostFollow li span {
   font-weight: bold;
 }
 
-.userPage-header .userDetail .userContent li {
+@media (max-width: 414px) {
+  .userPage-header .userPostFollow-pc {
+    display: none;
+  }
+}
+
+.userPage-header .userPostFollow-sm {
+  display: none;
+}
+
+@media (max-width: 414px) {
+  .userPage-header .userPostFollow-sm {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 60%;
+    margin-top: 40px;
+  }
+  .userPage-header .userPostFollow-sm li {
+    width: 33.3333%;
+    margin-right: 0;
+    text-align: center;
+  }
+  .userPage-header .userPostFollow-sm span {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.userPage-header .userContent li {
   font-size: 18px;
   line-height: 1.3;
 }
 
-.userPage-header .userDetail .userContent .name {
+.userPage-header .userContent .name {
   font-weight: bold;
+}
+
+.userPage-header .userContent .edit-sm {
+  display: none;
+}
+
+@media (max-width: 414px) {
+  .userPage-header .userContent .edit-sm {
+    display: block;
+    background: #F0F0F0;
+    border-radius: 5px;
+    padding: 2.5px 5px;
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+  .userPage-header .userContent .edit-sm button {
+    font-weight: bold;
+  }
 }
 
 .userPage-main .select-show-postList {
@@ -1069,9 +1395,38 @@ button {
   font-weight: bold;
 }
 
+@media (max-width: 414px) {
+  .userPage-main .select-show-postList li {
+    padding: 8px 0;
+    text-align: center;
+    margin-right: 0;
+    width: 25%;
+    text-align: center;
+  }
+}
+
+.userPage-main .select-show-postList .showOnePost {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .userPage-main .select-show-postList .showOnePost {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
 .userPage-main .select-show-postList .selected {
   border-top: 1px solid #262626;
   color: #262626;
+}
+
+@media (max-width: 414px) {
+  .userPage-main .select-show-postList .selected {
+    border-top: none;
+    color: #0095f6;
+  }
 }
 
 .userPage-main .select-show-postList span {
@@ -1079,8 +1434,27 @@ button {
   display: inline-block;
 }
 
+@media (max-width: 414px) {
+  .userPage-main .select-show-postList span {
+    width: 100%;
+  }
+}
+
 .userPage-main .select-show-postList span:first-child {
   margin-right: 6px;
+}
+
+@media (max-width: 414px) {
+  .userPage-main .select-show-postList span:first-child {
+    margin-right: 0;
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 414px) {
+  .userPage-main .select-show-postList span:last-child {
+    display: none;
+  }
 }
 
 .userPage-main .user-postList {
@@ -1091,13 +1465,30 @@ button {
       flex-wrap: wrap;
 }
 
+@media (max-width: 820px) {
+  .userPage-main .user-postList {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+
 .userPage-main .user-postList-item {
-  width: 293px;
-  height: 293px;
+  width: 30%;
+  padding-bottom: 30%;
   margin-right: 28px;
   margin-bottom: 28px;
   position: relative;
   cursor: pointer;
+}
+
+@media (max-width: 414px) {
+  .userPage-main .user-postList-item {
+    width: 32%;
+    padding-bottom: 32%;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
 }
 
 .userPage-main .user-postList-item:nth-child(3n+3) {
@@ -1109,7 +1500,7 @@ button {
   z-index: 1;
 }
 
-.userPage-main .user-postList .post-hover {
+.userPage-main .user-postList-item-hover {
   position: absolute;
   top: 0;
   right: 0;
@@ -1119,7 +1510,7 @@ button {
   opacity: 0;
 }
 
-.userPage-main .user-postList .post-hover ul {
+.userPage-main .user-postList-item-hover ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1130,7 +1521,7 @@ button {
           transform: translate(-50%, -50%);
 }
 
-.userPage-main .user-postList .post-hover li {
+.userPage-main .user-postList-item-hover li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1140,22 +1531,25 @@ button {
   padding: 0 8px;
 }
 
-.userPage-main .user-postList .post-hover li span {
+.userPage-main .user-postList-item-hover li span {
   color: #fff;
   display: inline-block;
   font-weight: bold;
 }
 
-.userPage-main .user-postList .post-hover li span:first-child {
+.userPage-main .user-postList-item-hover li span:first-child {
   margin-right: 4px;
 }
 
-.userPage-main .user-postList .post-pic {
-  width: 293px;
-  height: 293px;
+.userPage-main .user-postList-item-pic {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-.userPage-main .user-postList .post-pic img {
+.userPage-main .user-postList-item-pic img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;

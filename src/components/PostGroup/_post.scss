@@ -4,6 +4,11 @@
   border-radius: 10px;
   margin-top: 12px;
   overflow: hidden;
+  @media (max-width:414px) {
+    border: none;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
 
   .account {
     font-weight: bold;
@@ -28,7 +33,7 @@
 
   &-pic {
     height: 537.26px;
-    width: 470px;
+    width: 100%;
     position: relative;
     cursor: pointer;
 
@@ -95,6 +100,9 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      @media (max-width:414px) {
+        max-width: 200px;
+      }
     }
 
     .more-text {
@@ -126,7 +134,9 @@
   }
 
   &-footer {
-
+@media (max-width:414px) {
+  display: none;
+}
     label {
       position: relative;
 

@@ -2,13 +2,12 @@ import { userID, userPost } from "../../utils/API";
 import { DataContext } from "../../utils/Context";
 import { useParams } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
-import MyPage from "./MyPage/MyPage";
-import OtherPage from "./OtherPage/OtherPage";
+import Page from "./Page/Page";
 import Post from "../../components/Modal/Post/Post";
 function UserPage() {
   const { ID } = useParams();
-  const { userPostList } = useContext(DataContext);
-  const [user, setUser] = useState(null);
+  const { user, userPostList } = useContext(DataContext);
+  const [otherUser, setOtherUser] = useState(null);
   const userPostListAll = useRef([]);
   const [postList, setPostList] = useState([]);
   const userPostListLength = useRef(0);
@@ -22,7 +21,7 @@ function UserPage() {
   // init
   useEffect(() => {
     if (ID !== "mypage") {
-      userID(ID).then((res) => setUser(res));
+      userID(ID).then((res) => setOtherUser(res));
       userPost(ID).then((res) => {
         setPostList(res.data.slice(0, 6));
         userPostListAll.current = res.data;
@@ -39,30 +38,32 @@ function UserPage() {
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (postList.length !== 0) {
-        if (window.screen.width > 820) {
-          if (window.scrollY > 100 && postList.length < 12)
-            setPostList(userPostListAll.current.slice(0, 12));
-          if (
-            window.scrollY > 700 &&
-            postList.length !== userPostListLength.current
-          )
-            setPostList(userPostListAll.current);
-        }
+        if (window.scrollY > 100 && postList.length < 12)
+          setPostList(userPostListAll.current.slice(0, 12));
+        if (
+          window.scrollY > 700 &&
+          postList.length !== userPostListLength.current
+        )
+          setPostList(userPostListAll.current);
       }
     });
   }, [ID, postList.length]);
   return (
     <>
       {ID === "mypage" ? (
-        <MyPage
-          handleOpenPostModal={handleOpenPostModal}
-          userPostList={postList}
-          userPostListLength={userPostListLength.current}
-        />
-      ) : (
-        <OtherPage
+        <Page
+          ID={ID}
           user={user}
           userPostList={postList}
+          userPostListLength={userPostListLength.current}
+          handleOpenPostModal={handleOpenPostModal}
+        />
+      ) : (
+        <Page
+          ID={ID}
+          user={otherUser}
+          userPostList={postList}
+          setUserPostList={setPostList}
           userPostListLength={userPostListLength.current}
           handleOpenPostModal={handleOpenPostModal}
         />

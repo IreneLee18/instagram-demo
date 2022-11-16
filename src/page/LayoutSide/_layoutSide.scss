@@ -20,12 +20,18 @@
   height: 100vh;
   display: flex;
   z-index: 1;
+  @media (max-width:414px) {
+    display: none;
+  }
 
   &-all {
     position: fixed;
     border-right: 1px solid $third-gray;
     padding: 12px;
     height: 100%;
+    @media (max-width:820px) {
+      width: 10% !important;
+    }
   }
 
   &-logo {
@@ -35,6 +41,9 @@
     &-big {
       @include side-logo(110px, 40px, 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/1600px-Instagram_logo.svg.png', false);
       cursor: pointer;
+      @media (max-width:820px) {
+        @include side-logo(24px, 24px, 'https://cdn-icons-png.flaticon.com/512/87/87390.png', true);
+      }
     }
 
     &-sm {
@@ -122,6 +131,9 @@
     border: 1px solid $secondary-gray;
     border-left: none;
     box-shadow: 1px 2px 10px $secondary-gray;
+    @media (max-width:820px) {
+      left: 10%;
+    }
 
     h2 {
       font-size: 22px;
@@ -243,5 +255,32 @@
         }
       }
     }
+  }
+}
+
+.side-sm{
+  display: none;
+  @media (max-width:414px) {
+    display: block;
+  }
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1200;
+  background: #fff;
+  border-top: 1px solid $third-gray;
+  ul{
+    @include flex-align-items-center-justify-content-sb;
+  }
+  li {
+    @include side-li-size;
+    cursor: pointer;
+    span{
+    font-size: 32px;
+    }
+  }
+
+  .user-pic {
+    @include userPic(32px);
   }
 }
