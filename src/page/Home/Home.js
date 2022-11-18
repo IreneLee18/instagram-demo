@@ -3,7 +3,7 @@ import { DataContext } from "../../utils/Context";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState, useRef, useContext } from "react";
 import HomeSide from "./components/HomeSide";
-import HomePagePostMore from "../../components/Modal/PostMore/HomePagePostMore";
+import HomePagePostMoreModal from "../../components/Modal/PostMore/HomePagePostMoreModal";
 import PostModal from "../../components/Modal/Post/PostModal";
 import HomeReality from "./components/HomeReality";
 import HomePost from "./components/HomePost";
@@ -49,7 +49,7 @@ function Home() {
           </div>
           <HomeSide allUserList={allUserList} />
         </div>
-        <HomePagePostMore ref={postMoreModalRef} />
+        <HomePagePostMoreModal ref={postMoreModalRef} />
         <PostModal ref={postModalRef} currentPostID={currentPostID} />
       </>
     </>

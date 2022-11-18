@@ -14,11 +14,12 @@ import {
   forwardRef,
   useEffect,
 } from "react";
-import MyPagePostMore from "../PostMore/MyPagePostMore";
-import HomePagePostMore from "../PostMore/HomePagePostMore";
-import PostMoreComment from "../PostMore/PostMoreComment";
+import MyPagePostMoreModal from "../PostMore/MyPagePostMoreModal";
+import HomePagePostMoreModal from "../PostMore/HomePagePostMoreModal";
+import PostMoreCommentModal from "../PostMore/PostMoreCommentModal";
 import Body from "../../PostComment/Body";
-function Post({ currentPostID }, ref) {
+function PostModal({ currentPostID }, ref) {
+  console.log('post')
   const { setUserPostList, ownerID, userPostListID, setUserPostListID } =
     useContext(DataContext);
   const {
@@ -117,12 +118,12 @@ function Post({ currentPostID }, ref) {
               </div>
             </div>
           </div>
-          <MyPagePostMore
+          <MyPagePostMoreModal
             ref={myPostMoreModalRef}
             handleClickDeletePost={handleClickDeletePost}
           />
-          <HomePagePostMore ref={otherPostMoreModalRef} />
-          <PostMoreComment
+          <HomePagePostMoreModal ref={otherPostMoreModalRef} />
+          <PostMoreCommentModal
             ref={postMoreCommentModalRef}
             handleClickDeleteComment={handleClickDeleteComment}
           />
@@ -132,4 +133,4 @@ function Post({ currentPostID }, ref) {
   );
 }
 
-export default forwardRef(Post);
+export default forwardRef(PostModal);

@@ -1,19 +1,9 @@
-// import { deleteUsePostID } from "../../../utils/API";
-import { useState, useEffect, useImperativeHandle, forwardRef } from "react";
-function PostMore({ handleClickDeletePost }, ref) {
+import { useState,  useImperativeHandle, forwardRef } from "react";
+function PostMore(pops, ref) {
   const [modalState, setModalState] = useState(false);
   useImperativeHandle(ref, () => ({
     openModal: () => setModalState(true),
-    closeModal: () => setModalState(false),
   }));
-
-  useEffect(() => {
-    if (modalState) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "scroll";
-    }
-  }, [modalState]);
 
   if (!modalState) return null;
 
@@ -24,21 +14,25 @@ function PostMore({ handleClickDeletePost }, ref) {
         <div className="modal-content">
           <ul className="modal-body postMore-body">
             <li>
-              <button className="red-color fwb" onClick={handleClickDeletePost}>
-                刪除
-              </button>
+              <button className="red-color fwb">檢舉</button>
             </li>
             <li>
-              <button>編輯</button>
+              <button className="red-color fwb">取消追蹤</button>
             </li>
             <li>
-              <button>隱藏按讚數</button>
-            </li>
-            <li>
-              <button>關閉留言功能</button>
+              <button>加到「最愛」</button>
             </li>
             <li>
               <button>前往貼文</button>
+            </li>
+            <li>
+              <button>分享到......</button>
+            </li>
+            <li>
+              <button>複製連結</button>
+            </li>
+            <li>
+              <button>內嵌</button>
             </li>
             <li>
               <button onClick={() => setModalState(false)}>取消</button>
