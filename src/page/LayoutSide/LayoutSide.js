@@ -69,7 +69,6 @@ function LayoutSide() {
   }, [searchInput]);
 
   const handleClickLayout = (e) => {
-    console.log(e.target.id);
     switch (e.target.id) {
       case "home":
         setIsSearch(false);

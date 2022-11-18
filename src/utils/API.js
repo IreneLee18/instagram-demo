@@ -23,11 +23,26 @@ export const userID = (id) => {
     headers,
   }).then((res) => res.json());
 };
-export const userPost = (id) => {
-  return fetch(`https://dummyapi.io/data/v1/user/${id}/post?page=0`, {
-    headers,
-  }).then((res) => res.json());
+export const userPost = (id, page = 0, options = {}) => {
+  return fetch(
+    `https://dummyapi.io/data/v1/user/${id}/post?limit=9&page=${page}`,
+    {
+      headers,
+      options,
+    }
+  )
+    .then((res) => res.json())
+    .then((res) => res.data);
 };
+
+export const userPostTotal = (id) => {
+  return fetch(`https://dummyapi.io/data/v1/user/${id}/post`, {
+    headers,
+  })
+    .then((res) => res.json())
+    .then((res) => res.total);
+};
+
 export const userPostID = (id) => {
   return fetch(`https://dummyapi.io/data/v1/post/${id}`, {
     headers,
