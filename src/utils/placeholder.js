@@ -1,4 +1,9 @@
 import { Skeleton } from "@mui/material";
+export const loadingCss = {
+  left: "50%",
+  transform: "translateX(-50%)",
+  marginTop: "20px",
+};
 export const realityPlaceholder = (
   <Skeleton variant="circular" width={60} height={60} />
 );

@@ -1,20 +1,14 @@
 import Post from "../../../components/PostGroup/Post";
 import usePosts from "../../../hook/usePosts";
-import { postPlaceholder } from "../../../utils/placeholder";
+import { loadingCss,postPlaceholder } from "../../../utils/placeholder";
 import { useState, useRef, useCallback } from "react";
-import FadeLoader from "react-spinners/FadeLoader";
-const loadingCss = {
-  left: "50%",
-  transform: "translateX(-50%)",
-  marginTop: "20px",
-};
+import FadeLoader from "react-spinners/FadeLoader"
 
 function HomePost({ handleOpenPostModal, handleOpenPostMoreModal }) {
   const [pageNumber, setPageNumber] = useState(0);
   const { results, setResults, isLoading, hasNextPage } = usePosts(pageNumber);
 
   const intersectionObserver = useRef();
-
   const lastPostRef = useCallback(
     (post) => {
       if (isLoading) return;

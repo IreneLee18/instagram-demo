@@ -1,16 +1,18 @@
 import PostListGroup from "./Page/PagePostListGroup";
 import Post from "../../components/PostGroup/Post";
+import Header from "./Page/PageHeader";
+import PostModal from "../../components/Modal/Post/PostModal";
 import usePosts from "../../hook/usePosts";
-import { userID, userPost, userPostTotal } from "../../utils/API";
+import { loadingCss } from "../../utils/placeholder";
+import { userID, userPostTotal } from "../../utils/API";
 import { DataContext } from "../../utils/Context";
 import { useParams } from "react-router-dom";
 import { useContext, useState, useRef, useEffect, useCallback } from "react";
-import Page from "./Page/Page";
-import Header from "./Page/PageHeader";
-import PostModal from "../../components/Modal/Post/PostModal";
+import FadeLoader from "react-spinners/FadeLoader";
+
 function UserPage() {
   const { ID } = useParams();
-  const { ownerID, ownerPostList } = useContext(DataContext);
+  const { ownerID } = useContext(DataContext);
   const [pageNumber, setPageNumber] = useState(0);
   const { results, setResults, isLoading, hasNextPage, setHasNextPage } =
     usePosts(pageNumber, ID === "mypage" ? ownerID : ID);
@@ -18,7 +20,7 @@ function UserPage() {
 
   const [postUserID, setPostUserID] = useState(ID === "mypage" ? ownerID : ID);
   const [user, setUser] = useState(null);
-  const userPostListLength = useRef(0);
+  const totalListLength = useRef(0);
   const postModalRef = useRef();
   const [currentPostID, setCurrentPostID] = useState("");
   const handleOpenPostModal = (e) => {
@@ -32,14 +34,14 @@ function UserPage() {
     setResults([]);
     setUser(null);
     setHasNextPage(false);
-    userPostListLength.current = 0;
+    totalListLength.current = 0;
     setCurrentPostID("");
   }, [ID, ownerID, setHasNextPage, setResults]);
 
   // init:取得資料
   useEffect(() => {
     userPostTotal(postUserID).then((totalLength) => {
-      userPostListLength.current = totalLength;
+      totalListLength.current = totalLength;
     });
     userID(postUserID).then((res) => {
       setUser(res);
@@ -48,14 +50,12 @@ function UserPage() {
   }, [postUserID]);
 
   const intersectionObserver = useRef();
-
   const lastPostRef = useCallback(
     (post) => {
       if (isLoading) return;
 
       if (intersectionObserver.current)
         intersectionObserver.current.disconnect();
-
       intersectionObserver.current = new IntersectionObserver((posts) => {
         if (posts[0].isIntersecting && hasNextPage) {
           setPageNumber((prev) => prev + 1);
@@ -65,6 +65,24 @@ function UserPage() {
     },
     [isLoading, hasNextPage]
   );
+
+  const postItem = results.map((post, i) =>
+    results.length === i + 1 ? (
+      <PostListGroup
+        key={post.id}
+        post={post}
+        handleOpenPostModal={handleOpenPostModal}
+        ref={lastPostRef}
+      />
+    ) : (
+      <PostListGroup
+        key={post.id}
+        post={post}
+        handleOpenPostModal={handleOpenPostModal}
+      />
+    )
+  );
+
   if (user === null) return;
 
   return (
@@ -73,7 +91,7 @@ function UserPage() {
         <Header
           ID={ID}
           user={user}
-          userPostListLength={userPostListLength.current}
+          userPostListLength={totalListLength.current}
         />
         <div className="userPage-main">
           <ul className="select-show-postList">
@@ -110,12 +128,19 @@ function UserPage() {
               <span>已標註</span>
             </li>
           </ul>
-          {showMethods === "all" ? (
-            <PostListGroup
-              userPostList={results}
-              handleOpenPostModal={handleOpenPostModal}
-            />
-          ) : null}
+          <ul className="user-postList">
+            {showMethods === "all" && results && <>{postItem}</>}
+          </ul>
+          {isLoading &&
+            results.length !== 0 &&
+            results.length !== totalListLength.current && (
+              <FadeLoader
+                color="#262626"
+                width={3}
+                margin={0}
+                cssOverride={loadingCss}
+              />
+            )}
           {showMethods === "one" ? (
             <ul>
               {results.map((item) => (
