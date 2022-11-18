@@ -1467,14 +1467,6 @@ button {
       flex-wrap: wrap;
 }
 
-@media (max-width: 820px) {
-  .userPage-main .user-postList {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-}
-
 .userPage-main .user-postList-item {
   width: 30%;
   padding-bottom: 30%;

@@ -234,10 +234,6 @@
       display: flex;
       flex-wrap: wrap;
 
-      @media (max-width:820px) {
-        justify-content: center;
-      }
-
       &-item {
         width: 30%;
         padding-bottom: 30%;
