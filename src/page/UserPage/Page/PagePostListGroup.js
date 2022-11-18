@@ -1,5 +1,3 @@
-import React from "react";
-
 function PostListGroup({ userPostList, handleOpenPostModal }) {
   return (
     <ul className="user-postList">

@@ -5,7 +5,7 @@ import { suggestSidePlaceholder } from "../../../utils/placeholder";
 const array5 = [...Array(5).keys()];
 
 function HomeSide({ allUserList }) {
-  const { user } = useContext(DataContext);
+  const { owner } = useContext(DataContext);
   const navigate = useNavigate();
 
   return (
@@ -13,14 +13,14 @@ function HomeSide({ allUserList }) {
       <div className="user">
         <div className="user-detail">
           <div className="user-pic">
-            <img src={user.picture} alt={user.id} />
+            <img src={owner.picture} alt={owner.id} />
           </div>
           <div>
             <div className="user-account" onClick={() => navigate("/mypage")}>
-              {user.firstName.toLocaleLowerCase()}_
-              {user.lastName.toLocaleLowerCase()}
+              {owner.firstName.toLocaleLowerCase()}_
+              {owner.lastName.toLocaleLowerCase()}
             </div>
-            <div className="user-name">{user.firstName}</div>
+            <div className="user-name">{owner.firstName}</div>
           </div>
         </div>
         <div className="user-switch-account-btn">

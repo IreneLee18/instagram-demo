@@ -1827,4 +1827,44 @@ button {
   z-index: 10;
   width: 100%;
 }
+
+.post.detail-mobile label {
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post.detail-mobile label .user-pic-image {
+  width: 10%;
+}
+
+@media (max-width: 414px) {
+  .post.detail-mobile label .user-pic-image {
+    width: 15%;
+  }
+}
+
+.post.detail-mobile label .user-pic {
+  margin: 0 10px;
+  width: 40px;
+  height: 40px;
+}
+
+.post.detail-mobile label input {
+  width: 90%;
+  border: 1px solid #F0F0F0;
+  border-radius: 50px;
+  padding: 12px 20px;
+  margin-right: 10px;
+}
+
+@media (max-width: 414px) {
+  .post.detail-mobile label input {
+    width: 85%;
+  }
+}
 /*# sourceMappingURL=all.css.map */

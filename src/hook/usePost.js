@@ -6,7 +6,7 @@ import {
 import { DataContext } from "../utils/Context";
 import { useContext, useState, useCallback } from "react";
 function usePost(currentPostID) {
-  const {  user } = useContext(DataContext);
+  const {  owner } = useContext(DataContext);
 
   const [postUser, setPostUser] = useState(null);
   const [postMsgList, setPostMsgList] = useState(null);
@@ -62,7 +62,7 @@ function usePost(currentPostID) {
   };
 
   return {
-    user,
+    owner,
     postUser,
     postMsgList,
     setPostMsgList,

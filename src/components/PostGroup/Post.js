@@ -19,20 +19,20 @@ function Post(
   },
   ref
 ) {
-  const {
-    id,
-    image,
-    userLike,
-    likes,
-    text,
-    tags,
-    commentsLength,
-    publishDate,
-    openMoreText,
-    owner,
-  } = post;
+  // const {
+  //   id,
+  //   image,
+  //   userLike,
+  //   likes,
+  //   text,
+  //   tags,
+  //   commentsLength,
+  //   publishDate,
+  //   openMoreText,
+  //   post.owner,
+  // } = post;
   const location = useLocation();
-  const { user } = useContext(DataContext);
+  const { owner } = useContext(DataContext);
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
   const handleClickShowMoreText = (e) => {
@@ -52,7 +52,7 @@ function Post(
   const handleClickAddMsg = (e) => {
     setMsg("");
     const data = {
-      owner: user.id,
+      user: owner.id,
       message: msg,
       post: e.target.id,
     };
@@ -148,14 +148,14 @@ function Post(
       <div className="post-header">
         <div className="post-user">
           <div className="post-user-pic">
-            <img src={owner.picture} alt={id} />
+            <img src={post.owner.picture} alt={post.id} />
           </div>
           <h2
             className="account"
-            id={owner.id}
-            onClick={() => navigate(`/${owner.id}`)}
+            id={post.owner.id}
+            onClick={() => navigate(`/${post.owner.id}`)}
           >
-            {owner.firstName.toLowerCase()}_{owner.lastName.toLowerCase()}
+            {post.owner.firstName.toLowerCase()}_{post.owner.lastName.toLowerCase()}
           </h2>
         </div>
         <button
@@ -165,31 +165,31 @@ function Post(
           more_horiz
         </button>
       </div>
-      <div className="post-pic" id={id} onDoubleClick={handleClickAddLike}>
-        {userLike ? (
+      <div className="post-pic" id={post.id} onDoubleClick={handleClickAddLike}>
+        {post.userLike ? (
           <div className="show-fav">
             <span className="material-icons-outlined">favorite</span>
           </div>
         ) : null}
-        <img src={image} alt={id} id={id} />
+        <img src={post.image} alt={post.id} id={post.id} />
       </div>
       <div className="post-main">
         <ul className="post-icons">
           <li className="post-icons-left">
             <button
               className={
-                userLike
+                post.userLike
                   ? `material-icons-outlined red-color`
                   : "material-symbols-outlined"
               }
-              id={id}
+              id={post.id}
               onClick={handleClickSwitchLike}
             >
               favorite
             </button>
             <button
               className="material-symbols-outlined"
-              id={id}
+              id={post.id}
               onClick={handleOpenPostModal}
             >
               maps_ugc
@@ -201,16 +201,16 @@ function Post(
             <button className="material-symbols-outlined">bookmark</button>
           </li>
         </ul>
-        <div className="post-likeCount">{likes} 個讚</div>
+        <div className="post-likeCount">{post.likes} 個讚</div>
         <div className="post-text">
-          {openMoreText ? (
+          {post.openMoreText ? (
             <span className="show-text-group">
-              <span className="account" id={owner.id}>
-                {owner.firstName.toLowerCase()}_{owner.lastName.toLowerCase()}
+              <span className="account" id={post.owner.id}>
+                {post.owner.firstName.toLowerCase()}_{post.owner.lastName.toLowerCase()}
               </span>
-              <span>{text}</span>
+              <span>{post.text}</span>
               <span className="tag-group">
-                {tags.map((tag) => (
+                {post.tags.map((tag) => (
                   <button
                     className="tag"
                     key={tag.replace(" ", "")}
@@ -224,15 +224,15 @@ function Post(
           ) : (
             <>
               <span className="hide-text-group">
-                <span className="account" id={owner.id}>
-                  {owner.firstName.toLowerCase()}_{owner.lastName.toLowerCase()}
+                <span className="account" id={post.owner.id}>
+                  {post.owner.firstName.toLowerCase()}_{post.owner.lastName.toLowerCase()}
                 </span>
-                <span className="hide-text">{text}</span>
+                <span className="hide-text">{post.text}</span>
               </span>
-              {tags && tags.length !== 0 ? (
+              {post.tags && post.tags.length !== 0 ? (
                 <div
                   className="more-text"
-                  id={id}
+                  id={post.id}
                   onClick={handleClickShowMoreText}
                 >
                   更多
@@ -241,18 +241,18 @@ function Post(
             </>
           )}
         </div>
-        {commentsLength !== 0 ? (
+        {post.commentsLength !== 0 ? (
           <div className="post-message">
             <button
               className="showMsgBtn"
-              id={id}
+              id={post.id}
               onClick={handleOpenPostModal}
             >
-              查看全部{commentsLength}留言
+              查看全部{post.commentsLength}留言
             </button>
           </div>
         ) : null}
-        <div className="post-date">{handleDate(publishDate)}</div>
+        <div className="post-date">{handleDate(post.publishDate)}</div>
       </div>
       <div className="post-footer">
         <label htmlFor="msg">
@@ -265,7 +265,7 @@ function Post(
           <button
             className="blue-color fwb"
             style={msg === "" ? { opacity: ".3", cursor: "default" } : {}}
-            id={id}
+            id={post.id}
             onClick={handleClickAddMsg}
           >
             發布
@@ -281,14 +281,14 @@ function Post(
         <article
           ref={ref}
           className={location.pathname === "/" ? "post" : `post bd-none`}
-          key={id}
+          key={post.id}
         >
           {postBody}
         </article>
       ) : (
         <article
           className={location.pathname === "/" ? "post" : `post bd-none`}
-          key={id}
+          key={post.id}
         >
           {postBody}
         </article>

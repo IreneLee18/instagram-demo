@@ -19,8 +19,7 @@ import HomePagePostMoreModal from "../PostMore/HomePagePostMoreModal";
 import PostMoreCommentModal from "../PostMore/PostMoreCommentModal";
 import Body from "../../PostComment/Body";
 function PostModal({ currentPostID }, ref) {
-  console.log('post')
-  const { setUserPostList, ownerID, userPostListID, setUserPostListID } =
+  const { setOwnerPostList, ownerID, ownerPostListID, setOwnerPostListID } =
     useContext(DataContext);
   const {
     postUser,
@@ -38,7 +37,7 @@ function PostModal({ currentPostID }, ref) {
 
   const handleOpenModal = (e) => {
     if (
-      !userPostListID.includes(currentPostID) &&
+      !ownerPostListID.includes(currentPostID) &&
       !e.target.id.includes("edit")
     ) {
       otherPostMoreModalRef.current.openModal();
@@ -70,10 +69,10 @@ function PostModal({ currentPostID }, ref) {
       setModalState(false);
       myPostMoreModalRef.current.closeModal();
       userPost(ownerID).then((res) => {
-        setUserPostList(res.data);
+        setOwnerPostList(res.data);
         const list = [];
         res.data.forEach((item) => list.push(item.id));
-        setUserPostListID(list);
+        setOwnerPostListID(list);
       });
     });
   };

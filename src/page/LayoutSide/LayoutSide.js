@@ -7,7 +7,7 @@ allUser().then((res) => {
   allUserList = res.data;
 });
 function LayoutSide() {
-  const { user } = useContext(DataContext);
+  const { owner } = useContext(DataContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [moreToggle, setMoreToggle] = useState(false);
@@ -87,7 +87,7 @@ function LayoutSide() {
   };
   return (
     <>
-      {user !== null ? (
+      {owner !== null ? (
         <>
           {!pathname.includes("comment") && (
             <>
@@ -190,7 +190,7 @@ function LayoutSide() {
                       </li>
                       <li id="mypage" onClick={handleClickLayout}>
                         <div className="user-pic" id="mypage">
-                          <img src={user.picture} alt={user.id} id="mypage" />
+                          <img src={owner.picture} alt={owner.id} id="mypage" />
                         </div>
                         <span
                           style={searchToggle ? { display: "none" } : {}}
@@ -389,7 +389,7 @@ function LayoutSide() {
                   </li>
                   <li id="mypage" onClick={handleClickLayout}>
                     <div className="user-pic" id="mypage">
-                      <img src={user.picture} alt={user.id} id="mypage" />
+                      <img src={owner.picture} alt={owner.id} id="mypage" />
                     </div>
                   </li>
                 </ul>

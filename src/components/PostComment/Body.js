@@ -13,7 +13,7 @@ function Body({
   handleClickSwitchLike,
 }) {
   const navigate = useNavigate();
-  const { mediaSizePC, user, ownerID, userPostListID } =
+  const { mediaSizePC, user, ownerID, ownerPostListID } =
     useContext(DataContext);
   const [msg, setMsg] = useState("");
   const handleClickAddMsg = () => {
@@ -114,7 +114,7 @@ function Body({
                       <div className="post-date">
                         {handleDate(item.publishDate)}
                         {item.owner.id === ownerID ||
-                        userPostListID.includes(item.id) ? (
+                        ownerPostListID.includes(item.id) ? (
                           <button
                             className="material-symbols-outlined"
                             id={`edit${item.id}`}
@@ -170,6 +170,13 @@ function Body({
             </>
           )}
           <label htmlFor="msg">
+            {!mediaSizePC && (
+              <div className="user-pic-image">
+                <div className="user-pic">
+                  <img src={postUser.owner.picture} alt={postUser.owner.id} />
+                </div>
+              </div>
+            )}
             <input
               type="text"
               placeholder="留言..."

@@ -3,9 +3,9 @@ import { userID, userPost } from "./API";
 export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const ownerID = "6360036607df00c54b2ce688";
-  const [user, setUser] = useState(null);
-  const [userPostList, setUserPostList] = useState(null);
-  const [userPostListID, setUserPostListID] = useState(null);
+  const [owner, setOwner] = useState(null);
+  const [ownerPostList, setOwnerPostList] = useState(null);
+  const [ownerPostListID, setOwnerPostListID] = useState(null);
   const [currentPostID, setCurrentPostID] = useState("");
   const [mediaSizePC, setMediaSizePC] = useState(true);
 
@@ -19,11 +19,11 @@ export const DataProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    userID(ownerID).then((res) => setUser(res));
+    userID(ownerID).then((res) => setOwner(res));
     userPost(ownerID).then((res) => {
-      setUserPostList(res.data);
+      setOwnerPostList(res.data);
       const idList = res.data.map((item) => item.id);
-      setUserPostListID(idList);
+      setOwnerPostListID(idList);
     });
     getInnerWidth();
   }, []);
@@ -32,20 +32,20 @@ export const DataProvider = ({ children }) => {
     getInnerWidth();
   });
 
-  if (user === null || userPostList === null || userPostListID === null)
+  if (owner === null || ownerPostList === null || ownerPostListID === null)
     return null;
   return (
     <DataContext.Provider
       value={{
         ownerID,
-        user,
-        userPostList,
-        setUserPostList,
-        userPostListID,
-        setUserPostListID,
+        owner,
+        ownerPostList,
+        setOwnerPostList,
+        ownerPostListID,
+        setOwnerPostListID,
         currentPostID,
         setCurrentPostID,
-        mediaSizePC
+        mediaSizePC,
       }}
     >
       {children}
