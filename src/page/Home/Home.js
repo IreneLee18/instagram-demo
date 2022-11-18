@@ -1,20 +1,28 @@
 import { allUser } from "../../utils/API";
-import { useEffect, useState, useRef } from "react";
+import { DataContext } from "../../utils/Context";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState, useRef, useContext } from "react";
 import HomeSide from "./components/HomeSide";
 import HomePagePostMore from "../../components/Modal/PostMore/HomePagePostMore";
-import Post from "../../components/Modal/Post/Post";
+import PostModal from "../../components/Modal/Post/PostModal";
 import HomeReality from "./components/HomeReality";
 import HomePost from "./components/HomePost";
 function Home() {
+  const { currentPostID, setCurrentPostID, mediaSizePC } =
+    useContext(DataContext);
+  const navigate = useNavigate();
   const [allUserList, setAllUserList] = useState([]);
-  const [currentPostID, setCurrentPostID] = useState("");
   const postMoreModalRef = useRef();
   const postModalRef = useRef();
   const handleOpenPostMoreModal = () => {
     postMoreModalRef.current.openModal();
   };
   const handleOpenPostModal = (e) => {
-    postModalRef.current.openPostModal();
+    if (mediaSizePC) {
+      postModalRef.current.openPostModal();
+    } else {
+      navigate(`${e.target.id}/comment`);
+    }
     setCurrentPostID(e.target.id);
   };
 
@@ -42,7 +50,7 @@ function Home() {
           <HomeSide allUserList={allUserList} />
         </div>
         <HomePagePostMore ref={postMoreModalRef} />
-        <Post ref={postModalRef} currentPostID={currentPostID} />
+        <PostModal ref={postModalRef} currentPostID={currentPostID} />
       </>
     </>
   );

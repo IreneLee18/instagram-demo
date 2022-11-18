@@ -8,7 +8,7 @@ import { handleDate } from "../../utils/Date";
 import { DataContext } from "../../utils/Context";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useContext, forwardRef } from "react";
-import { Skeleton } from "@mui/material";
+
 function Post(
   {
     post,
@@ -47,7 +47,6 @@ function Post(
           return item;
         });
         setAllPostList(newPostList);
-        console.log(allPostList, newPostList);
       });
   };
   const handleClickAddMsg = (e) => {

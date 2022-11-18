@@ -3,7 +3,7 @@ import { DataContext } from "../../utils/Context";
 import { useParams } from "react-router-dom";
 import { useContext, useState, useRef, useEffect } from "react";
 import Page from "./Page/Page";
-import Post from "../../components/Modal/Post/Post";
+import Post from "../../components/Modal/Post/PostModal";
 function UserPage() {
   const { ID } = useParams();
   const { user, userPostList } = useContext(DataContext);

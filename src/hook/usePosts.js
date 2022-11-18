@@ -45,6 +45,6 @@ const usePosts = (pageNumber=0) => {
     return () => controller.abort();
   }, [pageNumber]);
 
-  return { results, isLoading, isError, error, hasNextPage };
+  return { results, setResults, isLoading, isError, error, hasNextPage };
 };
 export default usePosts;

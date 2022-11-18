@@ -11,7 +11,7 @@ const loadingCss = {
 
 function HomePost({ handleOpenPostModal, handleOpenPostMoreModal }) {
   const [pageNumber, setPageNumber] = useState(0);
-  const { results, isLoading, hasNextPage } = usePosts(pageNumber);
+  const { results, setResults, isLoading, hasNextPage } = usePosts(pageNumber);
 
   const intersectionObserver = useRef();
 
@@ -39,6 +39,7 @@ function HomePost({ handleOpenPostModal, handleOpenPostMoreModal }) {
           key={post.id}
           post={post}
           allPostList={results}
+          setAllPostList={setResults}
           handleOpenPostMoreModal={handleOpenPostMoreModal}
           handleOpenPostModal={handleOpenPostModal}
           ref={lastPostRef}
@@ -50,6 +51,7 @@ function HomePost({ handleOpenPostModal, handleOpenPostMoreModal }) {
         key={post.id}
         post={post}
         allPostList={results}
+        setAllPostList={setResults}
         handleOpenPostMoreModal={handleOpenPostMoreModal}
         handleOpenPostModal={handleOpenPostModal}
       />

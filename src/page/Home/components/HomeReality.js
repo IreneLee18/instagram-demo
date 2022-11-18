@@ -3,7 +3,7 @@ const array10 = [...Array(10).keys()];
 function HomeReality({ allUserList }) {
   return (
     <ul className="home-list-reality">
-      {allUserList.length !== 0
+      {allUserList && allUserList.length !== 0
         ? allUserList.map((item) => (
             <li className="reality" key={item.id}>
               <div className="reality-pic-outside">

@@ -6,6 +6,18 @@ export const DataProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [userPostList, setUserPostList] = useState(null);
   const [userPostListID, setUserPostListID] = useState(null);
+  const [currentPostID, setCurrentPostID] = useState("");
+  const [mediaSizePC, setMediaSizePC] = useState(true);
+
+  const getInnerWidth = () => {
+    const width = window.innerWidth;
+    if (width > 820) {
+      setMediaSizePC(true);
+    } else {
+      setMediaSizePC(false);
+    }
+  };
+
   useEffect(() => {
     userID(ownerID).then((res) => setUser(res));
     userPost(ownerID).then((res) => {
@@ -13,7 +25,13 @@ export const DataProvider = ({ children }) => {
       const idList = res.data.map((item) => item.id);
       setUserPostListID(idList);
     });
+    getInnerWidth();
   }, []);
+
+  window.addEventListener("resize", () => {
+    getInnerWidth();
+  });
+
   if (user === null || userPostList === null || userPostListID === null)
     return null;
   return (
@@ -25,6 +43,9 @@ export const DataProvider = ({ children }) => {
         setUserPostList,
         userPostListID,
         setUserPostListID,
+        currentPostID,
+        setCurrentPostID,
+        mediaSizePC
       }}
     >
       {children}
